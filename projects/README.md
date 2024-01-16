@@ -7,4 +7,4 @@ This folder showcases projects I have completed.
 * [CSS Practice 2](CSS%20Practice%202)
 * [JavaScript Playground](JavaScript%20Playground)
 * [Remote Database Project](Remote%20Database%20Project)
-* [Contact Database Project](Contact%20Database%20Project)
+* [Contacts Database Project](Contacts%20Database%20Project)
