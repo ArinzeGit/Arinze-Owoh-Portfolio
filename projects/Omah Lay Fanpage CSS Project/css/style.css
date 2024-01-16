@@ -1,0 +1,38 @@
+html {
+    font-size: 20px;
+    background-image: url(../assets/wallpaper3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+img {
+    width: 300px;
+    height:auto;
+    border-radius:117.52px;
+}
+
+video {
+    width: 500px;
+    height:auto;
+    border-radius: 20px;
+}
+
+p, ol, ul {
+    color: darkblue;
+    font-family: 'Times New Roman','Gill Sans',sans-serif;
+    font-style: italic;
+    font-size: 1rem;
+}
+
+h2 {
+    background-color: rebeccapurple;
+}
+
+header {
+    text-align: center;
+}
+footer {
+    background-color: blueviolet;
+    text-align: center;
+    color:darkred;
+}

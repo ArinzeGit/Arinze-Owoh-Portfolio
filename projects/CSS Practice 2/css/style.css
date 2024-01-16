@@ -1,0 +1,63 @@
+table, tr, th, td {
+    border-collapse: collapse;
+    border: 2px solid white;
+    padding: 15px;
+    font-size: 3rem;
+}
+
+table {
+    margin-top: 100px;
+}
+
+th {
+    background-color: blue;
+}
+
+    th:hover {
+        background-color: darkgray;
+    }
+
+    th:active {
+        color: red;
+    }
+
+td {
+    background-color: lightskyblue;
+}
+
+    td:hover {
+        background-color: lightgray;
+    }
+
+    td:active {
+        color: greenyellow;
+    }
+
+iframe {
+    height: 500px;
+    width: 40%;
+}
+
+.button {
+    position:fixed;
+    left:25%;
+    top:50%;
+    width:500px;
+    color: white;
+    border-style: none;
+    background-color: darkgray;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    display: inline-block;
+    margin:auto;
+    
+}
+
+    .button:hover {
+        background-color: skyblue;
+    }
+
+    .button:active {
+        color: black;
+    }

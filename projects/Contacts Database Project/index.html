@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Contact database</title>
+	<script src="js/script.js"></script>
+  	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header>
+		<h1>My Contact Database with a dynamic table</h1>
+	</header>
+
+	<form id=contactForm>
+	<fieldset>
+		<legend>Contact Information</legend>
+		
+		<label for="firstName">Enter your first name here: </label>	
+		<input type="text" id="firstName" maxlength="20">
+		 <br>
+		<label for="lastName">Enter your last name here: </label>
+		<input type="text" id="lastName" maxlength="20">
+		<br>
+		<label for="phoneNumber">Enter your phone number here: </label>
+		<input type="text" id="phoneNumber" maxLength="15">
+	</fieldset>
+		<button id="addButton">Add contact</button>	
+	</form>
+	
+	<section id='buttonSection'>
+		<button id="viewButton">View contacts</button>
+		<button id="hideButton">Hide contacts</button>
+		<button id="clearButton">Clear contacts</button>
+		<button id="saveButton">Save contacts</button>
+		<button id="loadButton">Load contacts</button>
+	</section>
+
+	<div id="tablesDiv">
+		<div id="contactTableDiv" >
+			<p>Use table heads to sort</p>
+			<br>
+			<table id=contactTable>
+			</table>
+		</div>
+
+		<div id="searchTableDiv">
+			<label for="searchBox">Search:</label>
+			<input id="searchBox" placeholder="Search contacts">
+			<table id=searchTable>
+			</table>
+		</div>
+	</div>
+	
+
+</body>
+</html>

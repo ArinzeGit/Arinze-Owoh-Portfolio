@@ -1,0 +1,43 @@
+body {
+    font-family: system-ui;
+    background-color: purple;
+    color: yellow;
+    text-align: left;
+}
+
+.otu {
+    background-color: blue;
+}
+
+
+
+.abuo {
+    background-color: green;
+}
+
+.ato {
+    background-color: red;
+}
+
+.ano {
+    background-color: darkred;
+}
+
+h2 {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    margin-top: 15px;
+    margin-left: 15px;
+    padding: 20px;
+    border: 15px solid yellow;
+    border-radius: 50px;
+}
+
+    h2:hover {
+        background-color: darkgray;
+    }
+    h2:active {
+        background-color: black;
+    }
