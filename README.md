@@ -7,7 +7,7 @@ My name is Owoh Dennings Arinzechukwu. I am a Nigerian Front-End Web Developer l
 * JavaScript
 * Git/GitHub Proficiency
 ## Past Projects
-View my past projects [here](Projects)
+View my past projects [here](projects)
 ## My hobbies
 * I love coding 💻
 * I am a Speedcuber with Official National Records 🧠
