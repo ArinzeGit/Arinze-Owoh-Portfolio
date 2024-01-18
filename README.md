@@ -16,7 +16,7 @@ View my past projects in the [projects folder](projects)
 * I play table tennis really well 🏓
 * I play football ⚽
 ## My Challenges
-These are the challenges I faced in my coding journey and how I overcame them. For project-specific challenges please navigate into the project's readme files.
+These are the challenges I faced in my coding journey and how I overcame them. For project-specific challenges please navigate into the projects' readme files.
 * Difficulty understanding fundamental concepts
   * I use YouTube videos to single out any confusing concept/topic and grasp it before going back to my edX course.
   * I also use ChatGPT. This is more applicable than YouTube when I am not confused about an entire topic but something unexpected/unexplained in the course or codes. I would interrogate ChatGPT as if it were a person.
