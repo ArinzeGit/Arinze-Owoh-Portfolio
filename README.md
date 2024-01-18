@@ -23,7 +23,7 @@ These are the challenges I faced in my coding journey and how I overcame them. F
   * I would use YouTube videos to single out any confusing concept/topic and grasp it before going back to my edX course.
   * I would also use ChatGPT. This is more applicable than YouTube when I am not confused about an entire topic but about something unexplained/unexpected in the course or my codes. I would interrogate ChatGPT as if it were a person.
 * Self-doubt
-  * I would remind myself of my past achievements in endeavours that demanded logical reasoning like National Speedcubing Competitions, National Maths Olympiads, Aptitude competitions in High School and College and SAT Maths. These self-validation enabled me to keep pushing.
+  * I would remind myself of my past achievements in endeavours that demanded logical reasoning like National Speedcubing Competitions, National Maths Olympiads, Aptitude competitions in High School and College and SAT Maths. These self-validation enable me to keep pushing.
 * Difficulty staying motivated
   * I would listen to motivational speakers like Bob Proctor, Gary Vaynerchuk, Andy Elliott or call my brother who is a web developer and mentor.
 * Physical stress due to long working hours
