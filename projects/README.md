@@ -1,5 +1,5 @@
 # Projects
-This folder showcases the projects I completed during my coding journey. Each Project Folder contains a readme file with clear explanations of the project, technologies used, and challenges faced. I did each project to apply the skills as I learned them. I have listed them  below in the order I completed them. 
+This folder showcases the projects I completed during my coding journey. Each Project Folder contains a README file containing context for the project, how to run them, technologies used, and challenges faced. I did each project to apply the skills as I learned them. I have listed them  below in the order I completed them. 
 ## Contents
 * [CSS Challenge](CSS%20Challenge) completed October, 2023
 * [Omah Lay Fanpage CSS Project](Omah%20Lay%20Fanpage%20CSS%20Project) completed November, 2023
