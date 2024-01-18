@@ -17,15 +17,15 @@ View my past projects in the [projects folder](projects)
 * I play football ⚽
 ## My Challenges
 These are the challenges I faced in my coding journey and how I overcame them. For project-specific challenges please navigate into the projects' readme files.
+* Initial frustrations and burnout
+  * I take a walk or take a nap.
 * Difficulty understanding fundamental concepts
   * I use YouTube videos to single out any confusing concept/topic and grasp it before going back to my edX course.
-  * I also use ChatGPT. This is more applicable than YouTube when I am not confused about an entire topic but something unexpected/unexplained in the course or codes. I would interrogate ChatGPT as if it were a person.
+  * I also use ChatGPT. This is more applicable than YouTube when I am not confused about an entire topic but about something unexpected/unexplained in the course or codes. I would interrogate ChatGPT as if it were a person.
 * Self-doubt
   * I would remind myself of all my past achievements in endeavours that demanded logical reasoning like National Speedcubing Competitions, National Maths Olympiads, Aptitude competitions in High School and College and SAT Maths. These self-validation enabled me to keep pushing.
 * Difficulty staying motivated
   * I listened to motivational speakers like Bob Proctor, Gary Vaynerchuk, Andy Elliott or call my brother who is a web developer and mentor.
-* Initial frustrations
-  * I take a walk or take a nap.
 * Physical stress due to long working hours
   * I invested in an ergonomic chair and laptop stand to raise my line of sight, reduce neck strain and improve posture
   * I invested in a monitor, external keyboard and external mouse to improve workflow
