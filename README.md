@@ -16,7 +16,7 @@ Here are my past [projects](projects)
 * I play table tennis really well 🏓
 * I play football ⚽
 ## My Challenges
-These are the challenges I faced in my coding journey and how I overcame them. For project-specific challenges please navigate into the projects' readme files.
+These are the challenges I faced in my coding journey and how I overcame them. For project-specific challenges please navigate into the projects' README files.
 * Initial frustrations and burnout
   * I would take a walk or a nap.
 * Difficulty understanding fundamental concepts
