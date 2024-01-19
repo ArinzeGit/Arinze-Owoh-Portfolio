@@ -9,7 +9,7 @@ I started learning to code on 25th September, 2023, after my final exams for Bac
 * JavaScript
 * Git/GitHub Proficiency
 ## My Past Projects
-View my past projects in the [projects folder](projects)
+Here are my past [projects](projects)
 ## My Hobbies
 * I love coding 💻
 * I am a Speedcuber with Official National Records 🧠
