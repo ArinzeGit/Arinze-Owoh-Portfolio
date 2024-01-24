@@ -27,5 +27,5 @@ These are the challenges I faced in my coding journey and how I overcame them. F
 * Difficulty staying motivated
   * I would listen to motivational speakers like Bob Proctor, Gary Vaynerchuk, Andy Elliott or call my brother who is a web developer and mentor.
 * Physical stress due to long working hours
-  * I invested in an ergonomic chair and laptop stand to raise my line of sight, reduce neck strain and improve posture
-  * I invested in a monitor, external keyboard and external mouse to improve workflow
+  * I invested in an ergonomic chair and laptop stand to raise my line of sight, reduce neck strain and improve posture.
+  * I invested in a monitor, external keyboard and external mouse to improve workflow.
