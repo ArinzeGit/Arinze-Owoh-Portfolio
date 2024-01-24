@@ -1,6 +1,6 @@
 # CSS Practice 2
 ## Context
-I did this project to practice HTML iframe element, CSS Flexbox, HTML tables, HTML audio elements and HTML pseudo-class,  
+I did this project to practice HTML iframe element, CSS Flexbox, HTML tables, HTML audio elements and HTML pseudo-class.
 ## How to run
 * Ensure you have a modern web browser installed
 * Open the index.html file in your web browser
