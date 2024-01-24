@@ -8,22 +8,9 @@ section {
   margin:10px;
 }
 
-#plotSettings {
-  width:140px;
-}
 
-#plot {
-  width:650px;
-}
-#theDiv {
+#typingDiv {
   width:300px;
   height:33px;
   background-color: pink;
-}
-canvas {
-  border:1px solid black;
-}
-
-.ballSection {
-  height:auto;
 }
