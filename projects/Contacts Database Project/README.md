@@ -22,4 +22,4 @@ This project is a web page used to store contacts in your browser local storage.
 * JavaScript
 ## Challenges faced during development
 * Window click event listeners that were to be set up by a function were automatically triggered by the click that called the function due to click propagation
- * I had to either stop propagation or wrap the event listener in a timeout function to defer its creation to the next iteration in the JavaScript event loop, allowing any pending synchronous tasks like propagation or an updating UI to complete
+  * I had to either stop propagation or wrap the event listener in a timeout function to defer its creation to the next iteration in the JavaScript event loop, allowing any pending synchronous tasks like propagation or an updating UI to complete
