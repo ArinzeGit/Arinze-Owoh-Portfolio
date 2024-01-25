@@ -1,6 +1,6 @@
 # CSS Practice 2
-## Context
-I did this project to practice HTML iframe element, CSS Flexbox, HTML tables, HTML audio elements and HTML pseudo-class.
+## Context and Description
+This project contains a table that responds to hover and click, a fixed button, audio, iframe and a CSS design using Flexbox. I used this project to practice HTML iframe element, CSS Flexbox, HTML tables, HTML audio elements and HTML pseudo-class.
 ## How to run
 * Ensure you have a modern web browser installed
 * Open the index.html file in your web browser
