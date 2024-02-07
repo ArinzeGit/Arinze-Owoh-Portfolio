@@ -11,3 +11,4 @@ Here I showcase the projects I completed during my coding journey. Each project 
 * [Bouncing Balls Animation](Bouncing%20Balls%20Animation) completed December, 2023
 * [Remote Database Project](Remote%20Database%20Project) completed December, 2023
 * [Contacts Database Project](Contacts%20Database%20Project) completed December, 2023
+* [Bouncing Battle](Bouncing%20Battle) in progress
