@@ -7,20 +7,20 @@ window.onload = function init() {
   let h = canvas.height;
 
   let ball={
-    x:250,
-    y:250,
-    radius:20,
-    speedX:7,
+    x:0,
+    y:0,
+    speedX:4,
     speedY:3,
+    radius:10,
     color:"green"
   };
 
   let player1={
     x:0,
     y:0,
-    height:150,
-    width: 150,
     speed: 5,
+    height:100,
+    width: 35,
     color: 'blue'
   };
 
@@ -29,14 +29,25 @@ window.onload = function init() {
   let player2={ 
     x:0,
     y:0,
-    height:40,
-    width: 300,
     speed: 5,
+    height:100,
+    width: 35,
     color: 'purple'
   };
 
   player2.x=w-player2.width;
   player2.y=(h-player2.height)/2;
+
+  let obstacle={
+    x:(w-50)/2,
+    y:-50,
+    speed:1,
+    angle:0,
+    angularSpeed:0.001*Math.PI,
+    size:30,
+    color: 'red'
+  };
+
 
   function startBallLoop() {
     // Check if the animation loop is not already running
@@ -60,20 +71,23 @@ window.onload = function init() {
     // clear the canvas i.e remove previous ball and players
     ctx.clearRect(0, 0, w, h);
     
-    //draw current ball and players
+    //draw current ball, players, obstacle
     drawBall(ball); 
     drawPlayer(player1); 
     drawPlayer(player2);
+    drawObstacle(obstacle);
     
-    //determine next position of ball and players
+    //determine next position of ball, players, obstacle
     determineBallNextPosition(ball); 
     determinePlayerNextPosition(player1); 
     determinePlayerNextPosition(player2);
+    determineObstacleNextPosition(obstacle);
     
-    //test collisions with canvas boundaries
+    //test for canvas boundaries
     testBallBoundaries(ball); 
     testPlayerBoundaries(player1); 
     testPlayerBoundaries(player2);
+    testObstacleBoundaries(obstacle);
 
     //test collision between ball and players
     testBallPlayerCollision(player1);
@@ -105,6 +119,15 @@ window.onload = function init() {
   }
 
 
+  function drawObstacle(ob){
+    ctx.save();
+    ctx.translate(ob.x+ob.size/2,ob.y+ob.size/2);
+    ctx.rotate(ob.angle);
+    ctx.fillStyle=ob.color;
+    ctx.fillRect(-ob.size/2, -ob.size/2, ob.size, ob.size);
+    ctx.restore();
+  }
+
   function determineBallNextPosition(b){
     b.x +=b.speedX;
     b.y += b.speedY;
@@ -133,6 +156,11 @@ window.onload = function init() {
     }
   }
 
+
+  function determineObstacleNextPosition(ob){
+    ob.y+=ob.speed;
+    ob.angle+=ob.angularSpeed;
+  }
 
 
   function testBallBoundaries(b){
@@ -174,42 +202,19 @@ window.onload = function init() {
     }
   }
 
+
+  function testObstacleBoundaries(ob){
+    if(ob.y>h+1.21*ob.size){ // the obstacle just went out of sight
+      ob.size=30+120*Math.random(); //randomize the size from 30 to 150
+      ob.speed=1+4*Math.random(); //randomize the speed from 1 to 5
+      ob.angularSpeed=Math.PI*(0.001+0.009*Math.random()); //randomize the angular speed from 0.001Pi to 0.01Pi
+      ob.x=(w-ob.size)/2; //centralize the obstacle
+      ob.y=-ob.size; //send it in from the top
+    }
+  }
+
+
  
-  let isArrowUpPressed = false;
-  let isArrowDownPressed = false;
-  let isWPressed = false;
-  let isSPressed = false;
-
-  document.addEventListener('keydown', keydownHandler);
-  document.addEventListener('keyup', keyupHandler);
-
-
-  function keydownHandler(event) {
-    if (event.key === 'ArrowUp') {
-      isArrowUpPressed = true;
-    } else if (event.key === 'ArrowDown') {
-      isArrowDownPressed = true;
-    } else if (event.key === 'w') {
-      isWPressed = true;
-    } else if (event.key === 's') {
-      isSPressed = true;
-    }
-  }
-
-
-  function keyupHandler(event) {
-    if (event.key === 'ArrowUp') {
-      isArrowUpPressed = false;
-    } else if (event.key === 'ArrowDown') {
-      isArrowDownPressed = false;
-    } else if (event.key === 'w') {
-      isWPressed = false;
-    } else if (event.key === 's') {
-      isSPressed = false;
-    }
-  }
-
-
   function testBallPlayerCollision(p){
     // Find the x and y coordinates of closest point to the circle within the rectangle
     let closestX = Math.max(p.x, Math.min(ball.x, p.x + p.width));
@@ -267,7 +272,42 @@ window.onload = function init() {
   }
 
 
+  let isArrowUpPressed = false;
+  let isArrowDownPressed = false;
+  let isWPressed = false;
+  let isSPressed = false;
+
+  
+
+  function keydownHandler(event) {
+    if (event.key === 'ArrowUp') {
+      isArrowUpPressed = true;
+    } else if (event.key === 'ArrowDown') {
+      isArrowDownPressed = true;
+    } else if (event.key === 'w') {
+      isWPressed = true;
+    } else if (event.key === 's') {
+      isSPressed = true;
+    }
+  }
+
+
+  function keyupHandler(event) {
+    if (event.key === 'ArrowUp') {
+      isArrowUpPressed = false;
+    } else if (event.key === 'ArrowDown') {
+      isArrowDownPressed = false;
+    } else if (event.key === 'w') {
+      isWPressed = false;
+    } else if (event.key === 's') {
+      isSPressed = false;
+    }
+  }
+
   document.querySelector('#startButton').addEventListener('click',startBallLoop);
   document.querySelector('#pauseButton').addEventListener('click',stopBallLoop);
+  document.addEventListener('keydown', keydownHandler);
+  document.addEventListener('keyup', keyupHandler);
+
 
 };
