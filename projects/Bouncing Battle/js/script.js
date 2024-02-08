@@ -125,8 +125,24 @@ window.onload = function init() {
     ctx.rotate(ob.angle);
     ctx.fillStyle=ob.color;
     ctx.fillRect(-ob.size/2, -ob.size/2, ob.size, ob.size);
+    ctx.fillStyle='black';
+    ctx.fillRect(-ob.size*7/16, -ob.size*7/16, ob.size*7/8, ob.size*7/8);
+    ctx.fillStyle=ob.color;
+    ctx.fillRect(-ob.size*5/16, -ob.size*5/16, ob.size*5/8, ob.size*5/8);
+    ctx.fillStyle='white';
+    ctx.fillRect(-ob.size/4, -ob.size/4, ob.size/2, ob.size/2);
+    ctx.restore();
+    ctx.save();
+    ctx.translate(ob.x+ob.size/2,ob.y+ob.size/2);
+    ctx.fillStyle='black';
+    ctx.beginPath();
+    ctx.arc(0, 0,ob.size/4, 0, 2*Math.PI);
+    ctx.fill();
+    ctx.fillStyle=ob.color;
+    ctx.fillRect(-Math.sqrt(2)*ob.size/16, -Math.sqrt(2)*ob.size/16, Math.sqrt(2)*ob.size/8, Math.sqrt(2)*ob.size/8);
     ctx.restore();
   }
+
 
   function determineBallNextPosition(b){
     b.x +=b.speedX;
