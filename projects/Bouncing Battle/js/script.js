@@ -39,8 +39,8 @@ window.onload = function init() {
   player2.y=(h-player2.height)/2;
 
   let obstacle={
-    x:(w-50)/2,
-    y:-50,
+    x:(w-30)/2,
+    y:-30,
     speed:1,
     angle:0,
     angularSpeed:0.001*Math.PI,
@@ -90,8 +90,11 @@ window.onload = function init() {
     testObstacleBoundaries(obstacle);
 
     //test collision between ball and players
-    testBallPlayerCollision(player1);
-    testBallPlayerCollision(player2);
+    testBallPlayerCollision(ball,player1);
+    testBallPlayerCollision(ball,player2);
+
+    //test collision between ball and Obstacle
+    testBallObstacleCollision();
 
 
     //request a new frame of animation in 1/60s
@@ -231,61 +234,108 @@ window.onload = function init() {
 
 
  
-  function testBallPlayerCollision(p){
+  function testBallPlayerCollision(b,p){
     // Find the x and y coordinates of closest point to the circle within the rectangle
-    let closestX = Math.max(p.x, Math.min(ball.x, p.x + p.width));
-    let closestY = Math.max(p.y, Math.min(ball.y, p.y + p.height));
+    let closestX = Math.max(p.x, Math.min(b.x, p.x + p.width));
+    let closestY = Math.max(p.y, Math.min(b.y, p.y + p.height));
 
     // Calculate the distance between the circle's center and this closest point
-    let distanceX = ball.x - closestX;
-    let distanceY = ball.y - closestY;
+    let distanceX = b.x - closestX;
+    let distanceY = b.y - closestY;
     let distanceSquared = distanceX * distanceX + distanceY * distanceY;
 
     // If the distance is less than the circle's radius, there is a collision(overlap)
-    if(distanceSquared < (ball.radius * ball.radius)){
+    if(distanceSquared < (b.radius * b.radius)){
 
       //we then decide how to deflect/direct the ball depending on which side of the rectangle it hit
       //or which side it hit more on, in case it hit the vertex
       if(Math.abs(distanceX)<Math.abs(distanceY)){
         //it hit the vertex more on a horizontal side of the rectangle(or entirely on a horizontal side if distanceX is zero)
         if(distanceY>0){
-          ball.y=p.y+p.height+ball.radius;
-          ball.speedY=Math.abs(ball.speedY);//it hit bottom side so return ball to surface and direct ball down
+          b.y=p.y+p.height+b.radius;
+          b.speedY=Math.abs(b.speedY);//it hit bottom side so return ball to surface and direct ball down
         } else { 
-          ball.y=p.y-ball.radius;
-          ball.speedY=-Math.abs(ball.speedY); //it hit top side so return ball to surface and direct ball up
+          b.y=p.y-b.radius;
+          b.speedY=-Math.abs(b.speedY); //it hit top side so return ball to surface and direct ball up
         }
       } else if(Math.abs(distanceX)>Math.abs(distanceY)){
         //it hit the vertex more on a vertical side of the rectangle(or entirely on a vertical side if distanceY is zero)
         if(distanceX>0){
-          ball.x=p.x+p.width+ball.radius; 
-          ball.speedX=Math.abs(ball.speedX); //it hit right side so return ball to surface and direct ball right 
+          b.x=p.x+p.width+b.radius; 
+          b.speedX=Math.abs(b.speedX); //it hit right side so return ball to surface and direct ball right 
         } else{
-          ball.x=p.x-ball.radius;
-          ball.speedX=-Math.abs(ball.speedX); //it hit left side so return ball to surface and direct ball left
+          b.x=p.x-b.radius;
+          b.speedX=-Math.abs(b.speedX); //it hit left side so return ball to surface and direct ball left
         }
       } else {//i.e Math.abs(distanceX)=Math.abs(distanceY) 
         if(distanceX===0){ //as in |0|=|0| meaning the ball center has been forced by canvas top/bottom boundaries to be inside the player
-          if(ball.y<0.5*h)ball.y=p.y-ball.radius;//it happened at a canvas top corner so force the ball to above player and crossing canvas boundary
-          else ball.y=p.y+p.height+ball.radius;//it happened at a canvas bottom corner so force the ball to below player and crossing canvas boundary
+          if(b.y<0.5*h)b.y=p.y-b.radius;//it happened at a canvas top corner so force the ball to above player and crossing canvas boundary
+          else b.y=p.y+p.height+b.radius;//it happened at a canvas bottom corner so force the ball to below player and crossing canvas boundary
         } else{//as in e.g |-3|=|+3| meaning it hit the vertex so evenly that the circle center and the rectangle's vertex form opposite vertices of a square
           if(distanceY>0&&distanceX>0){
-            ball.speedY=Math.abs(ball.speedY); 
-            ball.speedX=Math.abs(ball.speedX); //it hit bottomRight corner so move ball bottomRightWards
+            b.speedY=Math.abs(b.speedY); 
+            b.speedX=Math.abs(b.speedX); //it hit bottomRight corner so move ball bottomRightWards
           } else if(distanceY>0&&distanceX<0){
-            ball.speedY=Math.abs(ball.speedY); 
-            ball.speedX=-Math.abs(ball.speedX); // ...bottomLeftWards
+            b.speedY=Math.abs(b.speedY); 
+            b.speedX=-Math.abs(b.speedX); // ...bottomLeftWards
           } else if(distanceY<0&&distanceX>0){
-            ball.speedY=-Math.abs(ball.speedY); 
-            ball.speedX=Math.abs(ball.speedX); // ...topRightWards
+            b.speedY=-Math.abs(b.speedY); 
+            b.speedX=Math.abs(b.speedX); // ...topRightWards
           } else {
-            ball.speedY=-Math.abs(ball.speedY); 
-            ball.speedX=-Math.abs(ball.speedX); // ...topLeftWards
+            b.speedY=-Math.abs(b.speedY); 
+            b.speedX=-Math.abs(b.speedX); // ...topLeftWards
           }
         }
       }
     }
   }
+
+  function rotateAnticlockwiseAroundCenter(x, y, cx, cy, angleInRadians){
+    // Translate to the origin
+    let translatedX = x - cx;
+    let translatedY = y - cy;
+    // Rotate around the origin
+    let rotatedX = translatedX * Math.cos(angleInRadians) - translatedY * Math.sin(angleInRadians);
+    let rotatedY = translatedX * Math.sin(angleInRadians) + translatedY * Math.cos(angleInRadians);
+    // Translate back to the original position
+    let finalX = rotatedX + cx;
+    let finalY = rotatedY + cy;
+    return { x: finalX, y: finalY };
+  }
+
+
+
+  function rotateClockwiseAroundCenter(x, y, cx, cy, angleInRadians){
+    // Translate to the origin
+    let translatedX = x - cx;
+    let translatedY = y - cy;
+    // Rotate around the origin
+    let rotatedX = translatedX * Math.cos(angleInRadians) + translatedY * Math.sin(angleInRadians);
+    let rotatedY = -translatedX * Math.sin(angleInRadians) + translatedY * Math.cos(angleInRadians);
+    // Translate back to the original position
+    let finalX = rotatedX + cx;
+    let finalY = rotatedY + cy;
+    return { x: finalX, y: finalY };
+  }
+
+
+
+  function testBallObstacleCollision(){
+    let rotatedBall={};
+    rotatedBall.x=rotateAnticlockwiseAroundCenter(ball.x, ball.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).x;
+    rotatedBall.y=rotateAnticlockwiseAroundCenter(ball.x, ball.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).y;
+    rotatedBall.speedX=rotateAnticlockwiseAroundCenter(ball.speedX, ball.speedY,0,0, obstacle.angle).x;
+    rotatedBall.speedY=rotateAnticlockwiseAroundCenter(ball.speedX, ball.speedY,0,0, obstacle.angle).y;
+    rotatedBall.radius=ball.radius;
+    obstacle.height=obstacle.size;
+    obstacle.width=obstacle.size;
+    testBallPlayerCollision(rotatedBall,obstacle);
+    ball.x=rotateClockwiseAroundCenter(rotatedBall.x, rotatedBall.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).x;
+    ball.y=rotateClockwiseAroundCenter(rotatedBall.x, rotatedBall.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).y;
+    ball.speedX=rotateClockwiseAroundCenter(rotatedBall.speedX, rotatedBall.speedY,0,0, obstacle.angle).x;
+    ball.speedY=rotateClockwiseAroundCenter(rotatedBall.speedX, rotatedBall.speedY,0,0, obstacle.angle).y;
+  }
+
 
 
   let isArrowUpPressed = false;
