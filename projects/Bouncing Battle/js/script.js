@@ -96,7 +96,6 @@ window.onload = function init() {
     //test collision between ball and Obstacle
     testBallObstacleCollision();
 
-
     //request a new frame of animation in 1/60s
     animationId=requestAnimationFrame(ballLoop);
   }
@@ -290,7 +289,7 @@ window.onload = function init() {
     }
   }
 
-  function rotateAnticlockwiseAroundCenter(x, y, cx, cy, angleInRadians){
+  function rotateClockwiseAroundCenter(x, y, cx, cy, angleInRadians){ //This is Anticlockwise for cartesian cuz HTML canvas y-axis is flipped
     // Translate to the origin
     let translatedX = x - cx;
     let translatedY = y - cy;
@@ -305,7 +304,7 @@ window.onload = function init() {
 
 
 
-  function rotateClockwiseAroundCenter(x, y, cx, cy, angleInRadians){
+  function rotateAnticlockwiseAroundCenter(x, y, cx, cy, angleInRadians){ //This is Clockwise for cartesian cuz HTML canvas y-axis is flipped
     // Translate to the origin
     let translatedX = x - cx;
     let translatedY = y - cy;
@@ -321,15 +320,16 @@ window.onload = function init() {
 
 
   function testBallObstacleCollision(){
-    let rotatedBall={};
+    let rotatedBall={}; //we create this anti-ball to coincide(or not) with obstacle unrotated rectangle
+    //because if this anti-rotated ball coincides with obstacle unrotated rectangle, then actual ball coincides with actual (rotated) obstacle 
     rotatedBall.x=rotateAnticlockwiseAroundCenter(ball.x, ball.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).x;
     rotatedBall.y=rotateAnticlockwiseAroundCenter(ball.x, ball.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).y;
-    rotatedBall.speedX=rotateAnticlockwiseAroundCenter(ball.speedX, ball.speedY,0,0, obstacle.angle).x;
-    rotatedBall.speedY=rotateAnticlockwiseAroundCenter(ball.speedX, ball.speedY,0,0, obstacle.angle).y;
+    rotatedBall.speedX=rotateAnticlockwiseAroundCenter(ball.speedX, ball.speedY,0,0, obstacle.angle).x;//speeds are not points but vectors so rotate about
+    rotatedBall.speedY=rotateAnticlockwiseAroundCenter(ball.speedX, ball.speedY,0,0, obstacle.angle).y; //origin to preserve magnitude change direction
     rotatedBall.radius=ball.radius;
-    obstacle.height=obstacle.size;
+    obstacle.height=obstacle.size;// we explicitely give the square obstacle, height and width properties so we can test collision like it was a player
     obstacle.width=obstacle.size;
-    testBallPlayerCollision(rotatedBall,obstacle);
+    testBallPlayerCollision(rotatedBall,obstacle); //after this function has made necessary alterations to anti-ball, we convert to our real ball
     ball.x=rotateClockwiseAroundCenter(rotatedBall.x, rotatedBall.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).x;
     ball.y=rotateClockwiseAroundCenter(rotatedBall.x, rotatedBall.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).y;
     ball.speedX=rotateClockwiseAroundCenter(rotatedBall.speedX, rotatedBall.speedY,0,0, obstacle.angle).x;
@@ -369,6 +369,7 @@ window.onload = function init() {
       isSPressed = false;
     }
   }
+
 
   document.querySelector('#startButton').addEventListener('click',startBallLoop);
   document.querySelector('#pauseButton').addEventListener('click',stopBallLoop);
