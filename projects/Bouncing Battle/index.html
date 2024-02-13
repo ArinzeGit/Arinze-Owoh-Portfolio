@@ -12,12 +12,30 @@
   <h1>Bouncing Battle</h1>
   <p>Control players with 'w', 's', 'arrow up' and 'arrow down'</p>
   <section id="gameSection">
-  <div id="player1Div"></div>
+  <div id="player1Div">
+    <h2 id="p1">Player 1</h2>
+    <label for="paddle1ColorSelector">Choose your color:</label>
+    <select id="paddle1ColorSelector">
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+      <option value="purple">Purple</option>
+      <option value="orange">Orange</option>
+    </select>
+  </div>
     <div id="canvasDiv">
       <canvas id="gameCanvas" width="500" height="500"></canvas>
     </div>
     
-    <div id="player2Div"></div>
+    <div id="player2Div">
+      <h2 id="p2">Player 2</h2>
+      <label for="paddle2ColorSelector">Choose your color:</label>
+      <select id="paddle2ColorSelector">
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="purple">Purple</option>
+        <option value="orange">Orange</option>
+      </select>
+    </div>
   </section>
   <section id="controlSection">
     <button id="startButton">Start Game</button>

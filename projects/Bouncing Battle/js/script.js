@@ -32,7 +32,7 @@ window.onload = function init() {
     speed: 5,
     height:100,
     width: 35,
-    color: 'purple'
+    color: 'blue'
   };
 
   player2.x=w-player2.width;
@@ -347,8 +347,10 @@ window.onload = function init() {
 
   function keydownHandler(event) {
     if (event.key === 'ArrowUp') {
+      event.preventDefault(); //prevent default scrolling
       isArrowUpPressed = true;
     } else if (event.key === 'ArrowDown') {
+      event.preventDefault(); //prevent default scrolling
       isArrowDownPressed = true;
     } else if (event.key === 'w') {
       isWPressed = true;
@@ -375,6 +377,16 @@ window.onload = function init() {
   document.querySelector('#pauseButton').addEventListener('click',stopBallLoop);
   document.addEventListener('keydown', keydownHandler);
   document.addEventListener('keyup', keyupHandler);
+  let paddle1ColorSelector=document.querySelector('#paddle1ColorSelector');
+  paddle1ColorSelector.addEventListener('change',function(){
+    player1.color=paddle1ColorSelector.value;
+    document.querySelector('#p1').style.color=paddle1ColorSelector.value;
+  });
+  let paddle2ColorSelector=document.querySelector('#paddle2ColorSelector');
+  paddle2ColorSelector.addEventListener('change',function(){
+    player2.color=paddle2ColorSelector.value;
+    document.querySelector('#p2').style.color=paddle2ColorSelector.value;
+  });
 
 
 };
