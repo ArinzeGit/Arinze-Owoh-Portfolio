@@ -7,10 +7,10 @@ window.onload = function init() {
   let h = canvas.height;
 
   let ball={
-    x:0,
-    y:0,
-    speedX:4,
-    speedY:3,
+    x:45,
+    y:250,
+    speedX:5,
+    speedY:0,
     radius:10,
     color:"green"
   };
@@ -89,6 +89,9 @@ window.onload = function init() {
     testPlayerBoundaries(player2);
     testObstacleBoundaries(obstacle);
 
+    //check if a player missed the ball
+    missChecker();
+
     //test collision between ball and players
     testBallPlayerCollision(ball,player1);
     testBallPlayerCollision(ball,player2);
@@ -155,20 +158,20 @@ window.onload = function init() {
   function determinePlayerNextPosition(p){
     if (p===player1){
       if (isWPressed) {
-        console.log('W is pressed');
+        //console.log('W is pressed');
         p.y -= p.speed;
       }
       if (isSPressed) {
-        console.log('S is pressed');
+        //console.log('S is pressed');
         p.y += p.speed;
       }
     } else if (p===player2){
       if (isArrowUpPressed) {
-        console.log('Arrow Up is pressed');
+        //console.log('Arrow Up is pressed');
         p.y -= p.speed;
       }
       if (isArrowDownPressed) {
-        console.log('Arrow Down is pressed');
+        //console.log('Arrow Down is pressed');
         p.y += p.speed;
       }
     }
@@ -231,20 +234,23 @@ window.onload = function init() {
     }
   }
 
-
- 
-  function testBallPlayerCollision(b,p){
+  let distanceX, distanceY; 
+  function overlap(b,p){
     // Find the x and y coordinates of closest point to the circle within the rectangle
     let closestX = Math.max(p.x, Math.min(b.x, p.x + p.width));
     let closestY = Math.max(p.y, Math.min(b.y, p.y + p.height));
 
     // Calculate the distance between the circle's center and this closest point
-    let distanceX = b.x - closestX;
-    let distanceY = b.y - closestY;
+    distanceX = b.x - closestX;
+    distanceY = b.y - closestY;
     let distanceSquared = distanceX * distanceX + distanceY * distanceY;
 
     // If the distance is less than the circle's radius, there is a collision(overlap)
-    if(distanceSquared < (b.radius * b.radius)){
+    return(distanceSquared < (b.radius * b.radius));
+  }
+ 
+  function testBallPlayerCollision(b,p){
+    if(overlap(b,p)){
 
       //we then decide how to deflect/direct the ball depending on which side of the rectangle it hit
       //or which side it hit more on, in case it hit the vertex
@@ -370,6 +376,30 @@ window.onload = function init() {
     } else if (event.key === 's') {
       isSPressed = false;
     }
+  }
+
+  let didPlayer1Hit=true;
+  let didPlayer2Hit=true;
+
+  function missChecker(){
+    if((ball.x<60)&&(ball.x>45)&&(ball.speedX===-Math.abs(ball.speedX))){//ball close to and heading towards player1
+      didPlayer1Hit=false;
+    }else if ((ball.x>440)&&(ball.x<455)&&(ball.speedX===Math.abs(ball.speedX))){//ball close to and heading towards player2
+      didPlayer2Hit=false;
+    }
+    if(overlap(ball,player1)){
+      didPlayer1Hit=true;
+    } else if (overlap(ball,player2)){
+      didPlayer2Hit=true;
+    }
+    if((ball.x>60)&&(ball.speedX===Math.abs(ball.speedX))&&(didPlayer1Hit===false)){//ball going away from player1
+      console.log('player 1 just missed');
+      didPlayer1Hit=true;//reset to avoid detecting the miss continously
+    } else if ((ball.x<440)&&(ball.speedX===-Math.abs(ball.speedX))&&(didPlayer2Hit===false)){//ball going away from player2
+      console.log('player 2 just missed');
+      didPlayer2Hit=true;//reset to avoid detecting the miss continously
+    }
+
   }
 
 

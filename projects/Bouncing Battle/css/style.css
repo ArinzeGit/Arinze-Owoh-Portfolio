@@ -19,7 +19,7 @@ h1, p {
   padding:20px;
 }
 
-#canvasDiv{
+canvas{
   border:20px solid grey;
   box-shadow: 10px 10px 10px green;
 }
