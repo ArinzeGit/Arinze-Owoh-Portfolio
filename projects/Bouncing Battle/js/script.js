@@ -100,23 +100,14 @@ window.onload = function init() {
   }
 
 
-  document.querySelector('#startButton').addEventListener('click',startBallLoop);
+  document.querySelector('#playPauseButton').addEventListener('click',startStopBallLoop);
 
 
-  function startBallLoop() {
-    // Check if the animation loop is not already running
+  function startStopBallLoop() {
+    // Call ballLoop if the animation loop is not already running
     if (!animationId) {
       ballLoop();
-    }
-  }
-
-
-  document.querySelector('#pauseButton').addEventListener('click',stopBallLoop);
-
-
-  function stopBallLoop() {
-    // Check if the animation loop is running before attempting to stop it
-    if (animationId) {
+    } else {
       cancelAnimationFrame(animationId);
       animationId = undefined; // Reset the variable to indicate that the loop is stopped
     }
