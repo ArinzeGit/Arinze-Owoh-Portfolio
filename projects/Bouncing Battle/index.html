@@ -9,32 +9,38 @@
 </head>
 
 <body>
-  <h1>Bouncing Battle</h1>
-  <p>Control players with 'w', 's', 'arrow up' and 'arrow down'</p>
+  <h1 class="center">Bouncing Battle</h1>
+  <p class="center">Don't let the ball go without a hit!</p>
   <section id="gameSection">
   <div id="player1Div">
-    <h2 id="p1">Player 1</h2>
+    <h2 class="p1Color">Player 1</h2>
+    <p>Control paddle using the 'w' and 's' keys</p>
     <label for="paddle1ColorSelector">Choose your color:</label>
     <select id="paddle1ColorSelector">
-      <option value="blue">Blue</option>
-      <option value="green">Green</option>
-      <option value="purple">Purple</option>
+      <option value="dodgerblue">Blue</option>
+      <option value="mediumseagreen" selected>Green</option>
+      <option value="violet">Purple</option>
       <option value="orange">Orange</option>
     </select>
+    <h2 class="p1Color">Score: <span id="player1Score">0</span> </h2>
+    <h1 class="p1Color" id="winStatus1"></h1>
   </div>
     <div id="canvasDiv">
       <canvas id="gameCanvas" width="500" height="500"></canvas>
     </div>
     
     <div id="player2Div">
-      <h2 id="p2">Player 2</h2>
+      <h2 class="p2Color">Player 2</h2>
+      <p>Control paddle using the 'arrow up' and 'arrow down' keys</p>
       <label for="paddle2ColorSelector">Choose your color:</label>
       <select id="paddle2ColorSelector">
-        <option value="blue">Blue</option>
-        <option value="green">Green</option>
-        <option value="purple">Purple</option>
-        <option value="orange">Orange</option>
+        <option value="dodgerblue">Blue</option>
+        <option value="mediumseagreen">Green</option>
+        <option value="violet">Purple</option>
+        <option value="orange" selected>Orange</option>
       </select>
+      <h2 class="p2Color">Score: <span id="player2Score">0</span> </h2>
+      <h1 class="p2Color" id="winStatus2"></h1>
     </div>
   </section>
   <section id="controlSection">

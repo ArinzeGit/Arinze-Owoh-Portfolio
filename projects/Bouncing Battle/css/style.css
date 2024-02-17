@@ -3,11 +3,15 @@
   margin:10px;
 }
 
-#p1,#p2{
-  color: blue;
+.p1Color{
+  color: mediumseagreen;
 }
 
-h1, p {
+.p2Color{
+  color: orange;
+}
+
+.center{
   text-align: center;
 }
 

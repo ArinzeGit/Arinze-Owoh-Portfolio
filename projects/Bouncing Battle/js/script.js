@@ -1,43 +1,60 @@
 window.onload = function init() {
   console.log("page loaded and DOM is ready");
   
-  let ctx, animationId; 
   let canvas = document.querySelector("#gameCanvas");
+  let ctx, animationId;
   let w = canvas.width; 
   let h = canvas.height;
-
+  let distanceX, distanceY;
+  let isArrowUpPressed = false;
+  let isArrowDownPressed = false;
+  let isWPressed = false;
+  let isSPressed = false;
+  let didPlayer1Hit=true;
+  let didPlayer2Hit=true;
+  let player1Score=0;
+  let player2Score=0;
+  let paddle1ColorSelector=document.querySelector('#paddle1ColorSelector');
+  paddle1ColorSelector.addEventListener('change',function(){
+    player1.color=paddle1ColorSelector.value;
+    document.querySelectorAll('.p1Color').forEach(element =>{
+      element.style.color=paddle1ColorSelector.value;
+    });
+  });
+  let paddle2ColorSelector=document.querySelector('#paddle2ColorSelector');
+  paddle2ColorSelector.addEventListener('change',function(){
+    player2.color=paddle2ColorSelector.value;
+    document.querySelectorAll('.p2Color').forEach(element => {
+      element.style.color=paddle2ColorSelector.value;
+    });
+  });
   let ball={
     x:45,
     y:250,
     speedX:5,
     speedY:0,
     radius:10,
-    color:"green"
+    color:"black"
   };
-
   let player1={
     x:0,
     y:0,
     speed: 5,
     height:100,
     width: 35,
-    color: 'blue'
+    color: 'mediumseagreen'
   };
-
   player1.y=(h-player1.height)/2;
-
   let player2={ 
     x:0,
     y:0,
     speed: 5,
     height:100,
     width: 35,
-    color: 'blue'
+    color: 'orange'
   };
-
   player2.x=w-player2.width;
   player2.y=(h-player2.height)/2;
-
   let obstacle={
     x:(w-30)/2,
     y:-30,
@@ -49,12 +66,53 @@ window.onload = function init() {
   };
 
 
+  document.addEventListener('keydown', keydownHandler);
+
+
+  function keydownHandler(event) {
+    if (event.key === 'ArrowUp') {
+      event.preventDefault(); //prevent default scrolling
+      isArrowUpPressed = true;
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault(); //prevent default scrolling
+      isArrowDownPressed = true;
+    } else if (event.key === 'w') {
+      isWPressed = true;
+    } else if (event.key === 's') {
+      isSPressed = true;
+    }
+  }
+
+
+  document.addEventListener('keyup', keyupHandler);
+  
+
+  function keyupHandler(event) {
+    if (event.key === 'ArrowUp') {
+      isArrowUpPressed = false;
+    } else if (event.key === 'ArrowDown') {
+      isArrowDownPressed = false;
+    } else if (event.key === 'w') {
+      isWPressed = false;
+    } else if (event.key === 's') {
+      isSPressed = false;
+    }
+  }
+
+
+  document.querySelector('#startButton').addEventListener('click',startBallLoop);
+
+
   function startBallLoop() {
     // Check if the animation loop is not already running
     if (!animationId) {
       ballLoop();
     }
   }
+
+
+  document.querySelector('#pauseButton').addEventListener('click',stopBallLoop);
+
 
   function stopBallLoop() {
     // Check if the animation loop is running before attempting to stop it
@@ -64,8 +122,8 @@ window.onload = function init() {
     }
   }
 
+
   function ballLoop(){
-    
     ctx = canvas.getContext('2d');
     
     // clear the canvas i.e remove previous ball and players
@@ -234,7 +292,43 @@ window.onload = function init() {
     }
   }
 
-  let distanceX, distanceY; 
+
+  function missChecker(){
+    if((ball.x<60)&&(ball.x>45)&&(ball.speedX===-Math.abs(ball.speedX))){//ball close to and heading towards player1
+      didPlayer1Hit=false;
+    }else if ((ball.x>440)&&(ball.x<455)&&(ball.speedX===Math.abs(ball.speedX))){//ball close to and heading towards player2
+      didPlayer2Hit=false;
+    }
+    if(overlap(ball,player1)){
+      didPlayer1Hit=true;
+    } else if (overlap(ball,player2)){
+      didPlayer2Hit=true;
+    }
+    if((ball.x>60)&&(ball.speedX===Math.abs(ball.speedX))&&(didPlayer1Hit===false)){//ball going away from player1 without contact
+      player2Score+=1;
+      updateScore();
+      didPlayer1Hit=true;//reset to avoid detecting the miss continously
+    } else if ((ball.x<440)&&(ball.speedX===-Math.abs(ball.speedX))&&(didPlayer2Hit===false)){//ball going away from player2 without contact
+      player1Score+=1;
+      updateScore();
+      didPlayer2Hit=true;//reset to avoid detecting the miss continously
+    }
+  }
+
+
+  function updateScore(){
+    document.querySelector('#player1Score').innerHTML=player1Score;
+    document.querySelector('#player2Score').innerHTML=player2Score;
+    if(player1Score===10){
+      document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU WIN';
+      document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU LOSE';
+    } else if(player2Score===10){
+      document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU LOSE';
+      document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU WIN';
+    }
+  }
+
+
   function overlap(b,p){
     // Find the x and y coordinates of closest point to the circle within the rectangle
     let closestX = Math.max(p.x, Math.min(b.x, p.x + p.width));
@@ -248,6 +342,7 @@ window.onload = function init() {
     // If the distance is less than the circle's radius, there is a collision(overlap)
     return(distanceSquared < (b.radius * b.radius));
   }
+  
  
   function testBallPlayerCollision(b,p){
     if(overlap(b,p)){
@@ -295,36 +390,7 @@ window.onload = function init() {
     }
   }
 
-  function rotateClockwiseAroundCenter(x, y, cx, cy, angleInRadians){ //This is Anticlockwise for cartesian cuz HTML canvas y-axis is flipped
-    // Translate to the origin
-    let translatedX = x - cx;
-    let translatedY = y - cy;
-    // Rotate around the origin
-    let rotatedX = translatedX * Math.cos(angleInRadians) - translatedY * Math.sin(angleInRadians);
-    let rotatedY = translatedX * Math.sin(angleInRadians) + translatedY * Math.cos(angleInRadians);
-    // Translate back to the original position
-    let finalX = rotatedX + cx;
-    let finalY = rotatedY + cy;
-    return { x: finalX, y: finalY };
-  }
-
-
-
-  function rotateAnticlockwiseAroundCenter(x, y, cx, cy, angleInRadians){ //This is Clockwise for cartesian cuz HTML canvas y-axis is flipped
-    // Translate to the origin
-    let translatedX = x - cx;
-    let translatedY = y - cy;
-    // Rotate around the origin
-    let rotatedX = translatedX * Math.cos(angleInRadians) + translatedY * Math.sin(angleInRadians);
-    let rotatedY = -translatedX * Math.sin(angleInRadians) + translatedY * Math.cos(angleInRadians);
-    // Translate back to the original position
-    let finalX = rotatedX + cx;
-    let finalY = rotatedY + cy;
-    return { x: finalX, y: finalY };
-  }
-
-
-
+  
   function testBallObstacleCollision(){
     let rotatedBall={}; //we create this anti-ball to coincide(or not) with obstacle unrotated rectangle
     //because if this anti-rotated ball coincides with obstacle unrotated rectangle, then actual ball coincides with actual (rotated) obstacle 
@@ -343,80 +409,35 @@ window.onload = function init() {
   }
 
 
+  function rotateClockwiseAroundCenter(x, y, cx, cy, angleInRadians){ //This is Anticlockwise for cartesian cuz HTML canvas y-axis is flipped
+    // Translate to the origin
+    let translatedX = x - cx;
+    let translatedY = y - cy;
+    // Rotate around the origin
+    let rotatedX = translatedX * Math.cos(angleInRadians) - translatedY * Math.sin(angleInRadians);
+    let rotatedY = translatedX * Math.sin(angleInRadians) + translatedY * Math.cos(angleInRadians);
+    // Translate back to the original position
+    let finalX = rotatedX + cx;
+    let finalY = rotatedY + cy;
+    return { x: finalX, y: finalY };
+  }
 
-  let isArrowUpPressed = false;
-  let isArrowDownPressed = false;
-  let isWPressed = false;
-  let isSPressed = false;
 
+  function rotateAnticlockwiseAroundCenter(x, y, cx, cy, angleInRadians){ //This is Clockwise for cartesian cuz HTML canvas y-axis is flipped
+    // Translate to the origin
+    let translatedX = x - cx;
+    let translatedY = y - cy;
+    // Rotate around the origin
+    let rotatedX = translatedX * Math.cos(angleInRadians) + translatedY * Math.sin(angleInRadians);
+    let rotatedY = -translatedX * Math.sin(angleInRadians) + translatedY * Math.cos(angleInRadians);
+    // Translate back to the original position
+    let finalX = rotatedX + cx;
+    let finalY = rotatedY + cy;
+    return { x: finalX, y: finalY };
+  }
   
 
-  function keydownHandler(event) {
-    if (event.key === 'ArrowUp') {
-      event.preventDefault(); //prevent default scrolling
-      isArrowUpPressed = true;
-    } else if (event.key === 'ArrowDown') {
-      event.preventDefault(); //prevent default scrolling
-      isArrowDownPressed = true;
-    } else if (event.key === 'w') {
-      isWPressed = true;
-    } else if (event.key === 's') {
-      isSPressed = true;
-    }
-  }
-
-
-  function keyupHandler(event) {
-    if (event.key === 'ArrowUp') {
-      isArrowUpPressed = false;
-    } else if (event.key === 'ArrowDown') {
-      isArrowDownPressed = false;
-    } else if (event.key === 'w') {
-      isWPressed = false;
-    } else if (event.key === 's') {
-      isSPressed = false;
-    }
-  }
-
-  let didPlayer1Hit=true;
-  let didPlayer2Hit=true;
-
-  function missChecker(){
-    if((ball.x<60)&&(ball.x>45)&&(ball.speedX===-Math.abs(ball.speedX))){//ball close to and heading towards player1
-      didPlayer1Hit=false;
-    }else if ((ball.x>440)&&(ball.x<455)&&(ball.speedX===Math.abs(ball.speedX))){//ball close to and heading towards player2
-      didPlayer2Hit=false;
-    }
-    if(overlap(ball,player1)){
-      didPlayer1Hit=true;
-    } else if (overlap(ball,player2)){
-      didPlayer2Hit=true;
-    }
-    if((ball.x>60)&&(ball.speedX===Math.abs(ball.speedX))&&(didPlayer1Hit===false)){//ball going away from player1
-      console.log('player 1 just missed');
-      didPlayer1Hit=true;//reset to avoid detecting the miss continously
-    } else if ((ball.x<440)&&(ball.speedX===-Math.abs(ball.speedX))&&(didPlayer2Hit===false)){//ball going away from player2
-      console.log('player 2 just missed');
-      didPlayer2Hit=true;//reset to avoid detecting the miss continously
-    }
-
-  }
-
-
-  document.querySelector('#startButton').addEventListener('click',startBallLoop);
-  document.querySelector('#pauseButton').addEventListener('click',stopBallLoop);
-  document.addEventListener('keydown', keydownHandler);
-  document.addEventListener('keyup', keyupHandler);
-  let paddle1ColorSelector=document.querySelector('#paddle1ColorSelector');
-  paddle1ColorSelector.addEventListener('change',function(){
-    player1.color=paddle1ColorSelector.value;
-    document.querySelector('#p1').style.color=paddle1ColorSelector.value;
-  });
-  let paddle2ColorSelector=document.querySelector('#paddle2ColorSelector');
-  paddle2ColorSelector.addEventListener('change',function(){
-    player2.color=paddle2ColorSelector.value;
-    document.querySelector('#p2').style.color=paddle2ColorSelector.value;
-  });
+  
 
 
 };
