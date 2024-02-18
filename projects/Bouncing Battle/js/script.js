@@ -117,39 +117,44 @@ window.onload = function init() {
   function ballLoop(){
     ctx = canvas.getContext('2d');
     
-    // clear the canvas i.e remove previous ball and players
-    ctx.clearRect(0, 0, w, h);
-    
-    //draw current ball, players, obstacle
-    drawBall(ball); 
-    drawPlayer(player1); 
-    drawPlayer(player2);
-    drawObstacle(obstacle);
-    
-    //determine next position of ball, players, obstacle
-    determineBallNextPosition(ball); 
-    determinePlayerNextPosition(player1); 
-    determinePlayerNextPosition(player2);
-    determineObstacleNextPosition(obstacle);
-    
-    //test for canvas boundaries
-    testBallBoundaries(ball); 
-    testPlayerBoundaries(player1); 
-    testPlayerBoundaries(player2);
-    testObstacleBoundaries(obstacle);
+    if((player1Score===10)||(player2Score===10)){//loop gets cancelled when called if someone is on 10
+      cancelAnimationFrame(animationId);
+      animationId = undefined; // Reset the variable to indicate that the loop is stopped
+    }else{
+      // clear the canvas i.e remove previous ball and players
+      ctx.clearRect(0, 0, w, h);
+      
+      //draw current ball, players, obstacle
+      drawBall(ball); 
+      drawPlayer(player1); 
+      drawPlayer(player2);
+      drawObstacle(obstacle);
+      
+      //determine next position of ball, players, obstacle
+      determineBallNextPosition(ball); 
+      determinePlayerNextPosition(player1); 
+      determinePlayerNextPosition(player2);
+      determineObstacleNextPosition(obstacle);
+      
+      //test for canvas boundaries
+      testBallBoundaries(ball); 
+      testPlayerBoundaries(player1); 
+      testPlayerBoundaries(player2);
+      testObstacleBoundaries(obstacle);
 
-    //check if a player missed the ball
-    missChecker();
+      //check if a player missed the ball (to update scores)
+      missChecker();
 
-    //test collision between ball and players
-    testBallPlayerCollision(ball,player1);
-    testBallPlayerCollision(ball,player2);
+      //test collision between ball and players
+      testBallPlayerCollision(ball,player1);
+      testBallPlayerCollision(ball,player2);
 
-    //test collision between ball and Obstacle
-    testBallObstacleCollision();
+      //test collision between ball and Obstacle
+      testBallObstacleCollision();
 
-    //request a new frame of animation in 1/60s
-    animationId=requestAnimationFrame(ballLoop);
+      //request a new frame of animation in 1/60s
+      animationId=requestAnimationFrame(ballLoop);
+    }
   }
 
 
@@ -307,19 +312,6 @@ window.onload = function init() {
   }
 
 
-  function updateScore(){
-    document.querySelector('#player1Score').innerHTML=player1Score;
-    document.querySelector('#player2Score').innerHTML=player2Score;
-    if(player1Score===10){
-      document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU WIN';
-      document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU LOSE';
-    } else if(player2Score===10){
-      document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU LOSE';
-      document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU WIN';
-    }
-  }
-
-
   function overlap(b,p){
     // Find the x and y coordinates of closest point to the circle within the rectangle
     let closestX = Math.max(p.x, Math.min(b.x, p.x + p.width));
@@ -333,8 +325,21 @@ window.onload = function init() {
     // If the distance is less than the circle's radius, there is a collision(overlap)
     return(distanceSquared < (b.radius * b.radius));
   }
-  
+
+
+  function updateScore(){
+    document.querySelector('#player1Score').innerHTML=player1Score;
+    document.querySelector('#player2Score').innerHTML=player2Score;
+    if(player1Score===10){
+      document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU WIN';
+      document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU LOSE';
+    } else if(player2Score===10){
+      document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU LOSE';
+      document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU WIN';
+    }
+  }
  
+
   function testBallPlayerCollision(b,p){
     if(overlap(b,p)){
 
@@ -427,8 +432,5 @@ window.onload = function init() {
     return { x: finalX, y: finalY };
   }
   
-
-  
-
 
 };
