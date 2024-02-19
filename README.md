@@ -2,7 +2,7 @@
 ## About Me
 My name is Arinzechukwu Dennings Owoh. I am a Nigerian Front-End Web Developer living in Abuja, Nigeria.
 ## My Coding Journey
-I started learning to code on 25th September, 2023, after my final exams for Bachelor's Degree in Electrical/Electronics Engineering in September, 2023. I had no background in computer programming so I am self-taught. I learned HTML and CSS using edX online courses. In November, 2023, I started learning JavaScript also on edX. I build projects along the way to apply what I learn. I started learning Git and joined GitHub on 31st December, 2023. I will keep updating this part of my portfolio as I learn more technologies...
+I started learning to code on 25th September, 2023, after my final exams for Bachelor's Degree in Electrical/Electronics Engineering in September, 2023. I had no background in computer programming so I am self-taught. I learned HTML and CSS using edX online courses. In November, 2023, I started learning JavaScript also on edX. I build projects along the way to apply what I learn. I started learning Git and joined GitHub on 31st December, 2023. February 2024, I decided to brush up on fundamentals with Havard's "CS50 Introduction to Computer Science" course on edX while building a game with Vanilla JavaScript (inspired by table tennis of course). I will keep updating this part of my portfolio as I learn more technologies...
 ## My Skills
 * HTML
 * CSS
