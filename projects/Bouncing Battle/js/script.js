@@ -60,7 +60,7 @@ window.onload = function init() {
   let obstacle={
     x:(w-30)/2,
     y:-30,
-    speed:1,
+    speed:5,
     angle:0,
     angularSpeed:0.001*Math.PI,
     size:30,
@@ -68,7 +68,7 @@ window.onload = function init() {
   };
   let powerUp={
     x:w/2,
-    y:-45,
+    y:-940,//carefully chosen spot such that the powerUp will pass twice untouched by the ball of speed (5,0) if obstacles haven't randomised the game yet
     speed:3,
     radius:45,
     color1:"green",
@@ -488,6 +488,28 @@ window.onload = function init() {
     if((b.x-u.x)**2+(b.y-u.y)**2<(b.radius+u.radius)**2){ //there is ball powerUp collision
       u.y=-u.radius; //take powerUp out just above the canvas
       u.speed=0; //and make it stationary
+      if(isP1LastHitter){
+        player1.height*=2; //double paddle size
+        player1.y-=player1.height/4; //centralize paddle
+        setTimeout(()=>{ //wait 10 seconds
+          player1.height/=2; //restore paddle size
+          player1.y+=player1.height/2; //centralize paddle
+          u.speed=3; //and let powerUp start falling again
+        },10000);
+      }else if(isP2LastHitter){
+        player2.height*=2; //double paddle size
+        player2.y-=player2.height/4; //centralize paddle
+        setTimeout(()=>{ //wait 10 seconds
+          player2.height/=2; //restore paddle size
+          player2.y+=player2.height/2; //centralize paddle
+          u.speed=3; //and let powerUp start falling again
+        },10000);
+      }else{ //neither of the players has hit the ball
+        setTimeout(()=>{
+          u.speed=3; //let powerUp start falling again after 10 seconds
+        },10000);
+      }
+
     }
   }
 
