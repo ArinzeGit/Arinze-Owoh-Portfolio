@@ -14,6 +14,8 @@ window.onload = function init() {
   let didPlayer2Hit=true;
   let player1Score=0;
   let player2Score=0;
+  let isP1LastHitter=false;
+  let isP2LastHitter=false;
   let paddle1ColorSelector=document.querySelector('#paddle1ColorSelector');
   paddle1ColorSelector.addEventListener('change',function(){
     player1.color=paddle1ColorSelector.value;
@@ -63,6 +65,14 @@ window.onload = function init() {
     angularSpeed:0.001*Math.PI,
     size:30,
     color: 'red'
+  };
+  let powerUp={
+    x:w/2,
+    y:-45,
+    speed:3,
+    radius:45,
+    color1:"green",
+    color2:"pink"
   };
 
 
@@ -129,28 +139,34 @@ window.onload = function init() {
       drawPlayer(player1); 
       drawPlayer(player2);
       drawObstacle(obstacle);
+      drawPowerUp(powerUp);
       
       //determine next position of ball, players, obstacle
       determineBallNextPosition(ball); 
       determinePlayerNextPosition(player1); 
       determinePlayerNextPosition(player2);
       determineObstacleNextPosition(obstacle);
+      determinePowerUpNextPosition(powerUp);
       
-      //test for canvas boundaries
-      testBallBoundaries(ball); 
-      testPlayerBoundaries(player1); 
-      testPlayerBoundaries(player2);
-      testObstacleBoundaries(obstacle);
+      //handlers for canvas boundaries
+      handleBallBoundaries(ball); 
+      handlePlayerBoundaries(player1); 
+      handlePlayerBoundaries(player2);
+      handleObstacleBoundaries(obstacle);
+      handlePowerUpBoundaries(powerUp);
 
-      //check if a player missed the ball (to update scores)
-      missChecker();
+      //check if a player hit or missed the ball (to update scores and know who claims powerUp)
+      hitMissChecker();
 
-      //test collision between ball and players
-      testBallPlayerCollision(ball,player1);
-      testBallPlayerCollision(ball,player2);
+      //handle collision between ball and players
+      handleBallPlayerCollision(ball,player1);
+      handleBallPlayerCollision(ball,player2);
 
-      //test collision between ball and Obstacle
-      testBallObstacleCollision();
+      //handle collision between ball and Obstacle
+      handleBallObstacleCollision();
+
+      //handle collision between ball and powerUp
+      handleBallPowerUpCollision(ball,powerUp);
 
       //request a new frame of animation in 1/60s
       animationId=requestAnimationFrame(ballLoop);
@@ -203,6 +219,25 @@ window.onload = function init() {
   }
 
 
+  function drawPowerUp(u){
+    ctx.save();
+    ctx.translate(u.x,u.y);
+    ctx.fillStyle=u.color1;
+    ctx.beginPath();
+    ctx.arc(0, 0,u.radius, 0, 2*Math.PI);
+    ctx.fill();
+    ctx.fillStyle=u.color2;
+    ctx.beginPath();
+    ctx.arc(0, 0,u.radius*2/3, 0, 2*Math.PI);
+    ctx.fill();
+    ctx.fillStyle=u.color1;
+    ctx.beginPath();
+    ctx.arc(0, 0,u.radius*1/3, 0, 2*Math.PI);
+    ctx.fill();
+    ctx.restore();
+  }
+
+
   function determineBallNextPosition(b){
     b.x +=b.speedX;
     b.y += b.speedY;
@@ -238,7 +273,12 @@ window.onload = function init() {
   }
 
 
-  function testBallBoundaries(b){
+  function determinePowerUpNextPosition(u){
+    u.y +=u.speed;
+  }
+
+
+  function handleBallBoundaries(b){
     //for horizontal boundaries:
     if((b.x + b.radius)> w){
       //return ball to collision point
@@ -267,7 +307,7 @@ window.onload = function init() {
   }
 
 
-  function testPlayerBoundaries(p){
+  function handlePlayerBoundaries(p){
     if((p.y + p.height)> h){
       //return player to collision point
       p.y =h-p.height;
@@ -278,7 +318,7 @@ window.onload = function init() {
   }
 
 
-  function testObstacleBoundaries(ob){
+  function handleObstacleBoundaries(ob){
     if(ob.y>h+1.21*ob.size){ // the obstacle just went out of sight
       ob.size=30+120*Math.random(); //randomize the size from 30 to 150
       ob.speed=1+4*Math.random(); //randomize the speed from 1 to 5
@@ -289,7 +329,14 @@ window.onload = function init() {
   }
 
 
-  function missChecker(){
+  function handlePowerUpBoundaries(u){
+    if(u.y>h+u.radius){ // the powerUp just went out of sight
+      u.y=-u.radius; //send it in from the top
+    }
+  }
+
+
+  function hitMissChecker(){
     if((ball.x<60)&&(ball.x>45)&&(ball.speedX===-Math.abs(ball.speedX))){//ball close to and heading towards player1
       didPlayer1Hit=false;
     }else if ((ball.x>440)&&(ball.x<455)&&(ball.speedX===Math.abs(ball.speedX))){//ball close to and heading towards player2
@@ -297,8 +344,12 @@ window.onload = function init() {
     }
     if(overlap(ball,player1)){
       didPlayer1Hit=true;
+      isP1LastHitter=true;
+      isP2LastHitter=false;
     } else if (overlap(ball,player2)){
       didPlayer2Hit=true;
+      isP1LastHitter=false;
+      isP2LastHitter=true;
     }
     if((ball.x>60)&&(ball.speedX===Math.abs(ball.speedX))&&(didPlayer1Hit===false)){//ball going away from player1 without contact
       player2Score+=1;
@@ -340,7 +391,7 @@ window.onload = function init() {
   }
  
 
-  function testBallPlayerCollision(b,p){
+  function handleBallPlayerCollision(b,p){
     if(overlap(b,p)){
 
       //we then decide how to deflect/direct the ball depending on which side of the rectangle it hit
@@ -387,7 +438,7 @@ window.onload = function init() {
   }
 
   
-  function testBallObstacleCollision(){
+  function handleBallObstacleCollision(){
     let rotatedBall={}; //we create this anti-ball to coincide(or not) with obstacle unrotated rectangle
     //because if this anti-rotated ball coincides with obstacle unrotated rectangle, then actual ball coincides with actual (rotated) obstacle 
     rotatedBall.x=rotateAnticlockwiseAroundCenter(ball.x, ball.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).x;
@@ -395,9 +446,9 @@ window.onload = function init() {
     rotatedBall.speedX=rotateAnticlockwiseAroundCenter(ball.speedX, ball.speedY,0,0, obstacle.angle).x;//speeds are not points but vectors so rotate about
     rotatedBall.speedY=rotateAnticlockwiseAroundCenter(ball.speedX, ball.speedY,0,0, obstacle.angle).y; //origin to preserve magnitude change direction
     rotatedBall.radius=ball.radius;
-    obstacle.height=obstacle.size;// we explicitely give the square obstacle, height and width properties so we can test collision like it was a player
+    obstacle.height=obstacle.size;// we explicitely give the square obstacle, height and width properties so we can handle collision like it was a player
     obstacle.width=obstacle.size;
-    testBallPlayerCollision(rotatedBall,obstacle); //after this function has made necessary alterations to anti-ball, we convert to our real ball
+    handleBallPlayerCollision(rotatedBall,obstacle); //after this function has made necessary alterations to anti-ball, we convert to our real ball
     ball.x=rotateClockwiseAroundCenter(rotatedBall.x, rotatedBall.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).x;
     ball.y=rotateClockwiseAroundCenter(rotatedBall.x, rotatedBall.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).y;
     ball.speedX=rotateClockwiseAroundCenter(rotatedBall.speedX, rotatedBall.speedY,0,0, obstacle.angle).x;
@@ -432,5 +483,12 @@ window.onload = function init() {
     return { x: finalX, y: finalY };
   }
   
+
+  function handleBallPowerUpCollision(b,u){
+    if((b.x-u.x)**2+(b.y-u.y)**2<(b.radius+u.radius)**2){ //there is ball powerUp collision
+      u.y=-u.radius; //take powerUp out just above the canvas
+      u.speed=0; //and make it stationary
+    }
+  }
 
 };
