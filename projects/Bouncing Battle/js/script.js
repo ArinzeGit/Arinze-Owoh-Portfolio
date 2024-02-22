@@ -16,6 +16,7 @@ window.onload = function init() {
   let player2Score=0;
   let isP1LastHitter=false;
   let isP2LastHitter=false;
+  let hitCount=0;
   let paddle1ColorSelector=document.querySelector('#paddle1ColorSelector');
   paddle1ColorSelector.addEventListener('change',function(){
     player1.color=paddle1ColorSelector.value;
@@ -342,23 +343,27 @@ window.onload = function init() {
     }else if ((ball.x>440)&&(ball.x<455)&&(ball.speedX===Math.abs(ball.speedX))){//ball close to and heading towards player2
       didPlayer2Hit=false;
     }
-    if(overlap(ball,player1)){
+    if(overlap(ball,player1)){ // a hit!
       didPlayer1Hit=true;
       isP1LastHitter=true;
       isP2LastHitter=false;
-    } else if (overlap(ball,player2)){
+      accelerateBall();
+    } else if (overlap(ball,player2)){ // a hit!
       didPlayer2Hit=true;
       isP1LastHitter=false;
       isP2LastHitter=true;
+      accelerateBall();
     }
-    if((ball.x>60)&&(ball.speedX===Math.abs(ball.speedX))&&(didPlayer1Hit===false)){//ball going away from player1 without contact
+    if((ball.x>60)&&(ball.speedX===Math.abs(ball.speedX))&&(didPlayer1Hit===false)){//ball going away from player1 without contact (a miss!)
       player2Score+=1;
       updateScore();
       didPlayer1Hit=true;//reset to avoid detecting the miss continously
-    } else if ((ball.x<440)&&(ball.speedX===-Math.abs(ball.speedX))&&(didPlayer2Hit===false)){//ball going away from player2 without contact
+      deccelerateBall();
+    } else if ((ball.x<440)&&(ball.speedX===-Math.abs(ball.speedX))&&(didPlayer2Hit===false)){//ball going away from player2 without contact (a miss!)
       player1Score+=1;
       updateScore();
       didPlayer2Hit=true;//reset to avoid detecting the miss continously
+      deccelerateBall();
     }
   }
 
@@ -375,6 +380,22 @@ window.onload = function init() {
 
     // If the distance is less than the circle's radius, there is a collision(overlap)
     return(distanceSquared < (b.radius * b.radius));
+  }
+
+
+  function accelerateBall(){
+    hitCount+=1;
+    if((hitCount%10===0)&&(hitCount<=50)){ //at every 10 hits we accelerate, and stop after 5 times of accelerating
+      ball.speedX*=1.1;//This line and the next jointly multiply the resultant speed by 1.1
+      ball.speedY*=1.1;
+    }
+  }
+
+
+  function deccelerateBall(){
+    ball.speedX*=5/Math.sqrt(ball.speedX**2+ball.speedY**2);//This line and the next jointly restore the resultant speed to 5
+    ball.speedY*=5/Math.sqrt(ball.speedX**2+ball.speedY**2);
+    hitCount=0; //resets the acceleration count
   }
 
 
