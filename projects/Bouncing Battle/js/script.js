@@ -1,6 +1,7 @@
 window.onload = function init() {
   console.log("page loaded and DOM is ready");
   
+  const gameOverSound = document.querySelector('#gameOverSound');
   let canvas = document.querySelector("#gameCanvas");
   let ctx, animationId;
   let w = canvas.width; 
@@ -405,10 +406,18 @@ window.onload = function init() {
     if(player1Score===10){
       document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU WIN';
       document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU LOSE';
+      playGameOverSound();
     } else if(player2Score===10){
       document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU LOSE';
       document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU WIN';
+      playGameOverSound();
     }
+  }
+
+
+  function playGameOverSound(){
+    gameOverSound.currentTime = 0;
+    gameOverSound.play();
   }
  
 
