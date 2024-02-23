@@ -2,6 +2,8 @@ window.onload = function init() {
   console.log("page loaded and DOM is ready");
   
   const gameOverSound = document.querySelector('#gameOverSound');
+  const obstacleSound = document.querySelector('#obstacleSound');
+  const powerUpSound = document.querySelector('#powerUpSound');
   let canvas = document.querySelector("#gameCanvas");
   let ctx, animationId;
   let w = canvas.width; 
@@ -478,11 +480,20 @@ window.onload = function init() {
     rotatedBall.radius=ball.radius;
     obstacle.height=obstacle.size;// we explicitely give the square obstacle, height and width properties so we can handle collision like it was a player
     obstacle.width=obstacle.size;
+    if (overlap(rotatedBall,obstacle)){
+      playObstacleSound();
+    }
     handleBallPlayerCollision(rotatedBall,obstacle); //after this function has made necessary alterations to anti-ball, we convert to our real ball
     ball.x=rotateClockwiseAroundCenter(rotatedBall.x, rotatedBall.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).x;
     ball.y=rotateClockwiseAroundCenter(rotatedBall.x, rotatedBall.y,obstacle.x+obstacle.size/2,obstacle.y+obstacle.size/2, obstacle.angle).y;
     ball.speedX=rotateClockwiseAroundCenter(rotatedBall.speedX, rotatedBall.speedY,0,0, obstacle.angle).x;
     ball.speedY=rotateClockwiseAroundCenter(rotatedBall.speedX, rotatedBall.speedY,0,0, obstacle.angle).y;
+  }
+
+
+  function playObstacleSound(){
+    obstacleSound.currentTime = 0;
+    obstacleSound.play();
   }
 
 
@@ -516,6 +527,7 @@ window.onload = function init() {
 
   function handleBallPowerUpCollision(b,u){
     if((b.x-u.x)**2+(b.y-u.y)**2<(b.radius+u.radius)**2){ //there is ball powerUp collision
+      playPowerUpSound();
       u.y=-u.radius; //take powerUp out just above the canvas
       u.speed=0; //and make it stationary
       if(isP1LastHitter){
@@ -541,6 +553,12 @@ window.onload = function init() {
       }
 
     }
+  }
+
+
+  function playPowerUpSound(){
+    powerUpSound.currentTime = 0;
+    powerUpSound.play();
   }
 
 };
