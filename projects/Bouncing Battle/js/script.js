@@ -4,6 +4,8 @@ window.onload = function init() {
   const gameOverSound = document.querySelector('#gameOverSound');
   const obstacleSound = document.querySelector('#obstacleSound');
   const powerUpSound = document.querySelector('#powerUpSound');
+  const player1Sound = document.querySelector('#player1Sound');
+  const player2Sound = document.querySelector('#player2Sound');
   let canvas = document.querySelector("#gameCanvas");
   let ctx, animationId;
   let w = canvas.width; 
@@ -351,11 +353,13 @@ window.onload = function init() {
       isP1LastHitter=true;
       isP2LastHitter=false;
       accelerateBall();
+      playPlayer1Sound();
     } else if (overlap(ball,player2)){ // a hit!
       didPlayer2Hit=true;
       isP1LastHitter=false;
       isP2LastHitter=true;
       accelerateBall();
+      playPlayer2Sound();
     }
     if((ball.x>60)&&(ball.speedX===Math.abs(ball.speedX))&&(didPlayer1Hit===false)){//ball going away from player1 without contact (a miss!)
       player2Score+=1;
@@ -399,6 +403,18 @@ window.onload = function init() {
     ball.speedX*=5/Math.sqrt(ball.speedX**2+ball.speedY**2);//This line and the next jointly restore the resultant speed to 5
     ball.speedY*=5/Math.sqrt(ball.speedX**2+ball.speedY**2);
     hitCount=0; //resets the acceleration count
+  }
+
+
+  function playPlayer1Sound(){
+    player1Sound.currentTime = 0;
+    player1Sound.play();
+  }
+
+
+  function playPlayer2Sound(){
+    player2Sound.currentTime = 0;
+    player2Sound.play();
   }
 
 
