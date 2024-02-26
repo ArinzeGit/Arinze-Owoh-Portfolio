@@ -6,6 +6,7 @@ window.onload = function init() {
   const powerUpSound = document.querySelector('#powerUpSound');
   const player1Sound = document.querySelector('#player1Sound');
   const player2Sound = document.querySelector('#player2Sound');
+  const missSound = document.querySelector('#missSound');
   let canvas = document.querySelector("#gameCanvas");
   let ctx, animationId;
   let w = canvas.width; 
@@ -366,11 +367,13 @@ window.onload = function init() {
       updateScore();
       didPlayer1Hit=true;//reset to avoid detecting the miss continously
       deccelerateBall();
+      playMissSound();
     } else if ((ball.x<440)&&(ball.speedX===-Math.abs(ball.speedX))&&(didPlayer2Hit===false)){//ball going away from player2 without contact (a miss!)
       player1Score+=1;
       updateScore();
       didPlayer2Hit=true;//reset to avoid detecting the miss continously
       deccelerateBall();
+      playMissSound();
     }
   }
 
@@ -415,6 +418,12 @@ window.onload = function init() {
   function playPlayer2Sound(){
     player2Sound.currentTime = 0;
     player2Sound.play();
+  }
+
+
+  function playMissSound(){
+    missSound.currentTime = 0;
+    missSound.play();
   }
 
 
