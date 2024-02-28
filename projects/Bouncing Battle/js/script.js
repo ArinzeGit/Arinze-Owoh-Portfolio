@@ -422,8 +422,10 @@ window.onload = function init() {
 
 
   function playMissSound(){
-    missSound.currentTime = 0;
-    missSound.play();
+    if((player1Score!==10)&&(player2Score!==10)){
+      missSound.currentTime = 0;
+      missSound.play();
+    }
   }
 
 
