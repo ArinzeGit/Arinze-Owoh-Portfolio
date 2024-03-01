@@ -13,6 +13,7 @@ window.onload = function init() {
   });
   const gameOverSound = document.querySelector('#gameOverSound');
   const obstacleSound = document.querySelector('#obstacleSound');
+  obstacleSound.volume = 0.5;
   const powerUpSound = document.querySelector('#powerUpSound');
   const playerSound = document.querySelector('#playerSound');
   const missSound = document.querySelector('#missSound');
