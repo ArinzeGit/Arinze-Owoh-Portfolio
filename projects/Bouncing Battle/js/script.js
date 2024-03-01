@@ -7,6 +7,7 @@ window.onload = function init() {
   const player1Sound = document.querySelector('#player1Sound');
   const player2Sound = document.querySelector('#player2Sound');
   const missSound = document.querySelector('#missSound');
+  const backgroundMusic = document.querySelector('#backgroundMusic');
   let canvas = document.querySelector("#gameCanvas");
   let ctx, animationId;
   let w = canvas.width; 
@@ -121,15 +122,22 @@ window.onload = function init() {
 
 
   function startStopBallLoop() {
-    // Call ballLoop if the animation loop is not already running
-    if (!animationId) {
+    if (!animationId) { //if the animation frame is not already running, call ballLoop
       ballLoop();
-    } else {
+      playBackgroundMusic();
+    } else { //if the animation frame is running, cancel it 
       cancelAnimationFrame(animationId);
       animationId = undefined; // Reset the variable to indicate that the loop is stopped
+      backgroundMusic.pause();
     }
   }
 
+
+  function playBackgroundMusic(){
+    if((player1Score!==10)&&(player2Score!==10)){
+      backgroundMusic.play();
+    }
+  }
 
   function ballLoop(){
     ctx = canvas.getContext('2d');
@@ -435,10 +443,12 @@ window.onload = function init() {
     if(player1Score===10){
       document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU WIN';
       document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU LOSE';
+      backgroundMusic.pause();
       playGameOverSound();
     } else if(player2Score===10){
       document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU LOSE';
       document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU WIN';
+      backgroundMusic.pause();
       playGameOverSound();
     }
   }
