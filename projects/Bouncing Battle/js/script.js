@@ -19,6 +19,7 @@ window.onload = function init() {
   const player2Sound = document.querySelector('#player2Sound');
   const missSound = document.querySelector('#missSound');
   const backgroundMusic = document.querySelector('#backgroundMusic');
+  backgroundMusic.volume = 0.3;
   let canvas = document.querySelector("#gameCanvas");
   let ctx, animationId;
   let w = canvas.width; 
