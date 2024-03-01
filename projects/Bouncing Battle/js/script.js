@@ -136,10 +136,12 @@ window.onload = function init() {
     if (!animationId) { //if the animation frame is not already running, call ballLoop
       ballLoop();
       playBackgroundMusic();
+      playPauseButton.textContent ='Pause';
     } else { //if the animation frame is running, cancel it 
       cancelAnimationFrame(animationId);
       animationId = undefined; // Reset the variable to indicate that the loop is stopped
       backgroundMusic.pause();
+      playPauseButton.textContent ='Play';
     }
   }
 
