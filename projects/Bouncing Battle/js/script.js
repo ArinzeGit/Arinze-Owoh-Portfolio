@@ -8,6 +8,10 @@ window.onload = function init() {
   const player2Sound = document.querySelector('#player2Sound');
   const missSound = document.querySelector('#missSound');
   const backgroundMusic = document.querySelector('#backgroundMusic');
+  backgroundMusic.addEventListener('ended', function() {
+    backgroundMusic.currentTime = 0; // Reset the currentTime to 0 to replay the audio
+    backgroundMusic.play(); // Start playing again
+  });
   let canvas = document.querySelector("#gameCanvas");
   let ctx, animationId;
   let w = canvas.width; 
