@@ -11,22 +11,24 @@
 <body>
   <h1 class="center">Bouncing Battle</h1>
   <p class="center">Don't let the ball go without a hit!</p>
+
   <section id="gameSection">
-  <div id="player1Div">
-    <h2 class="p1Color">Player 1</h2>
-    <p>Control paddle using the 'w' and 's' keys</p>
-    <label for="paddle1ColorSelector">Choose your color:</label>
-    <select id="paddle1ColorSelector">
-      <option value="dodgerblue">Blue</option>
-      <option value="mediumseagreen" selected>Green</option>
-      <option value="violet">Purple</option>
-      <option value="tomato">red</option>
-      <option value="orange">Orange</option>
-    </select>
-    <h2 class="p1Color">Score: <span id="player1Score">0</span> </h2>
-    <hr>
-    <h1 class="p1Color" id="winStatus1"></h1>
-  </div>
+    <div id="player1Div">
+      <h2 class="p1Color">Player 1</h2>
+      <p>Control paddle using the 'w' and 's' keys</p>
+      <label for="paddle1ColorSelector">Choose your color:</label>
+      <select id="paddle1ColorSelector">
+        <option value="dodgerblue">Blue</option>
+        <option value="mediumseagreen" selected>Green</option>
+        <option value="violet">Purple</option>
+        <option value="tomato">red</option>
+        <option value="orange">Orange</option>
+      </select>
+      <h2 class="p1Color">Score: <span id="player1Score">0</span> </h2>
+      <hr>
+      <h1 class="p1Color" id="winStatus1"></h1>
+    </div>
+
     <div id="canvasDiv">
       <canvas id="gameCanvas" width="500" height="500"></canvas>
     </div>
@@ -47,16 +49,21 @@
       <h1 class="p2Color" id="winStatus2"></h1>
     </div>
   </section>
+
   <section id="controlSection">
     <button id="playPauseButton">Play/Pause</button>
+    <button id="muteButton">Mute</button>
   </section>
-  <audio id="gameOverSound" src="assets/gameOverSound.mp3"></audio>
-  <audio id="obstacleSound" src="assets/obstacleSound.wav"></audio>
-  <audio id="powerUpSound" src="assets/powerUpSound.wav"></audio>
-  <audio id="player1Sound" src="assets/player1Sound.ogg"></audio>
-  <audio id="player2Sound" src="assets/player2Sound.ogg"></audio>
-  <audio id="missSound" src="assets/missSound.wav"></audio>
-  <audio id="backgroundMusic" src="assets/backgroundMusic.mp3"></audio>
+
+  <section>
+    <audio id="gameOverSound" src="assets/gameOverSound.mp3"></audio>
+    <audio id="obstacleSound" src="assets/obstacleSound.wav"></audio>
+    <audio id="powerUpSound" src="assets/powerUpSound.wav"></audio>
+    <audio id="player1Sound" src="assets/player1Sound.ogg"></audio>
+    <audio id="player2Sound" src="assets/player2Sound.ogg"></audio>
+    <audio id="missSound" src="assets/missSound.wav"></audio>
+    <audio id="backgroundMusic" src="assets/backgroundMusic.mp3"></audio>
+  </section>
 </body>
 
 </html>

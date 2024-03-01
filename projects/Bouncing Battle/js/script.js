@@ -1,6 +1,17 @@
 window.onload = function init() {
   console.log("page loaded and DOM is ready");
   
+  const muteButton = document.querySelector('#muteButton');
+  muteButton.addEventListener('click', function(){
+    gameOverSound.muted = !gameOverSound.muted; //change the mute states of all audio elements between true and false
+    obstacleSound.muted = !obstacleSound.muted;
+    powerUpSound.muted = !powerUpSound.muted;
+    player1Sound.muted = !player1Sound.muted;
+    player2Sound.muted = !player2Sound.muted;
+    missSound.muted = !missSound.muted;
+    backgroundMusic.muted = !backgroundMusic.muted;
+    muteButton.textContent = missSound.muted ? 'Unmute' : 'Mute'; //Update the button text based on the mute state of one of the audio elements
+  });
   const gameOverSound = document.querySelector('#gameOverSound');
   const obstacleSound = document.querySelector('#obstacleSound');
   const powerUpSound = document.querySelector('#powerUpSound');
