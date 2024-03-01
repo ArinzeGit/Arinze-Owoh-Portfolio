@@ -6,8 +6,7 @@ window.onload = function init() {
     gameOverSound.muted = !gameOverSound.muted; //change the mute states of all audio elements between true and false
     obstacleSound.muted = !obstacleSound.muted;
     powerUpSound.muted = !powerUpSound.muted;
-    player1Sound.muted = !player1Sound.muted;
-    player2Sound.muted = !player2Sound.muted;
+    playerSound.muted = !playerSound.muted;
     missSound.muted = !missSound.muted;
     backgroundMusic.muted = !backgroundMusic.muted;
     muteButton.textContent = missSound.muted ? 'Unmute' : 'Mute'; //Update the button text based on the mute state of one of the audio elements
@@ -15,8 +14,7 @@ window.onload = function init() {
   const gameOverSound = document.querySelector('#gameOverSound');
   const obstacleSound = document.querySelector('#obstacleSound');
   const powerUpSound = document.querySelector('#powerUpSound');
-  const player1Sound = document.querySelector('#player1Sound');
-  const player2Sound = document.querySelector('#player2Sound');
+  const playerSound = document.querySelector('#playerSound');
   const missSound = document.querySelector('#missSound');
   const backgroundMusic = document.querySelector('#backgroundMusic');
   backgroundMusic.volume = 0.3;
@@ -374,13 +372,13 @@ window.onload = function init() {
       isP1LastHitter=true;
       isP2LastHitter=false;
       accelerateBall();
-      playPlayer1Sound();
+      playPlayerSound();
     } else if (overlap(ball,player2)){ // a hit!
       didPlayer2Hit=true;
       isP1LastHitter=false;
       isP2LastHitter=true;
       accelerateBall();
-      playPlayer2Sound();
+      playPlayerSound();
     }
     if((ball.x>60)&&(ball.speedX===Math.abs(ball.speedX))&&(didPlayer1Hit===false)){//ball going away from player1 without contact (a miss!)
       player2Score+=1;
@@ -429,15 +427,9 @@ window.onload = function init() {
   }
 
 
-  function playPlayer1Sound(){
-    player1Sound.currentTime = 0;
-    player1Sound.play();
-  }
-
-
-  function playPlayer2Sound(){
-    player2Sound.currentTime = 0;
-    player2Sound.play();
+  function playPlayerSound(){
+    playerSound.currentTime = 0;
+    playerSound.play();
   }
 
 
