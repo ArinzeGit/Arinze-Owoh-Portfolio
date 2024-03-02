@@ -26,6 +26,7 @@
 canvas{
   border:20px solid grey;
   box-shadow: 10px 10px 10px green;
+  background-color: transparent;
 }
 
 #canvasDiv, #player1Div, #player2Div{
@@ -46,4 +47,11 @@ button:hover{
 
 button:active{
   color:white ;
+}
+
+body {
+  background-image: url('../assets/backgroundImage.jpg');
+  background-size: cover;
+  margin: 0;
+  color:white;
 }

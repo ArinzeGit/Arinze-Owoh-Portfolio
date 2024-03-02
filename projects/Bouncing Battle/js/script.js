@@ -19,8 +19,8 @@ window.onload = function init() {
   const missSound = document.querySelector('#missSound');
   const backgroundMusic = document.querySelector('#backgroundMusic');
   backgroundMusic.volume = 0.3;
-  const backgroundImage = new Image();
-  backgroundImage.src = 'assets/backgroundImage.jpg';
+  const canvasBackgroundImage = new Image();
+  canvasBackgroundImage.src = 'assets/canvasBackgroundImage.jpg';
   let canvas = document.querySelector("#gameCanvas");
   let ctx, animationId;
   let w = canvas.width; 
@@ -164,7 +164,7 @@ window.onload = function init() {
       // clear the canvas i.e remove previous ball and players
       ctx.clearRect(0, 0, w, h);
       
-      ctx.drawImage(backgroundImage, 0, 0, w, h);
+      ctx.drawImage(canvasBackgroundImage, 0, 0, w, h);
 
       //draw current ball, players, obstacle
       drawBall(ball); 
