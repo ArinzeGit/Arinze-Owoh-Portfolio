@@ -25,7 +25,8 @@
 
 canvas{
   border:20px solid grey;
-  box-shadow: 10px 10px 10px green;
+  border-radius: 15px;
+  box-shadow: 10px 10px 10px mediumseagreen;
   background-color: transparent;
 }
 
@@ -37,16 +38,25 @@ canvas{
 button{
   width: 100px;
   height: 40px;
-  border-radius: 5px;
+  border-radius: 20px;
   margin-left: 10px;
+  background-color:mediumseagreen;
+  color:white;
+  border: solid transparent;
+  cursor: pointer;
+  border-width:4px 0 0;
+  font-size: 15px;
+  font-weight: 1000;
 }
 
 button:hover{
-  background-color:green ;
+  background-color:mediumspringgreen;
+  color:green;
+  transform: scale(1.1) rotate(-2deg);
 }
 
 button:active{
-  color:white ;
+  border-width:0 0 4px;
 }
 
 body {
@@ -54,4 +64,5 @@ body {
   background-size: cover;
   margin: 0;
   color:white;
+  font-family: sans-serif;
 }

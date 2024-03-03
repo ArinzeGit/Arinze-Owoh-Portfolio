@@ -9,7 +9,7 @@ window.onload = function init() {
     playerSound.muted = !playerSound.muted;
     missSound.muted = !missSound.muted;
     backgroundMusic.muted = !backgroundMusic.muted;
-    muteButton.textContent = missSound.muted ? 'Unmute' : 'Mute'; //Update the button text based on the mute state of one of the audio elements
+    muteButton.textContent = missSound.muted ? 'UNMUTE' : 'MUTE'; //Update the button text based on the mute state of one of the audio elements
   });
   const gameOverSound = document.querySelector('#gameOverSound');
   const obstacleSound = document.querySelector('#obstacleSound');
@@ -37,18 +37,18 @@ window.onload = function init() {
   let isP1LastHitter=false;
   let isP2LastHitter=false;
   let hitCount=0;
-  let paddle1ColorSelector=document.querySelector('#paddle1ColorSelector');
-  paddle1ColorSelector.addEventListener('change',function(){
-    player1.color=paddle1ColorSelector.value;
+  let player1ColorSelector=document.querySelector('#player1ColorSelector');
+  player1ColorSelector.addEventListener('change',function(){
+    player1.color=player1ColorSelector.value;
     document.querySelectorAll('.p1Color').forEach(element =>{
-      element.style.color=paddle1ColorSelector.value;
+      element.style.color=player1ColorSelector.value;
     });
   });
-  let paddle2ColorSelector=document.querySelector('#paddle2ColorSelector');
-  paddle2ColorSelector.addEventListener('change',function(){
-    player2.color=paddle2ColorSelector.value;
+  let player2ColorSelector=document.querySelector('#player2ColorSelector');
+  player2ColorSelector.addEventListener('change',function(){
+    player2.color=player2ColorSelector.value;
     document.querySelectorAll('.p2Color').forEach(element => {
-      element.style.color=paddle2ColorSelector.value;
+      element.style.color=player2ColorSelector.value;
     });
   });
   let ball={
@@ -138,12 +138,12 @@ window.onload = function init() {
     if (!animationId) { //if the animation frame is not already running, call ballLoop
       ballLoop();
       playBackgroundMusic();
-      playPauseButton.textContent ='Pause';
+      playPauseButton.textContent ='PAUSE';
     } else { //if the animation frame is running, cancel it 
       cancelAnimationFrame(animationId);
       animationId = undefined; // Reset the variable to indicate that the loop is stopped
       backgroundMusic.pause();
-      playPauseButton.textContent ='Play';
+      playPauseButton.textContent ='PLAY';
     }
   }
 
