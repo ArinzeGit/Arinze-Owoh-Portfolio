@@ -1,5 +1,4 @@
 #gameSection{
-  border:2px solid grey;
   margin:10px;
 }
 
@@ -17,7 +16,6 @@
 
 #player1Div, #player2Div {
   box-sizing:border-box;
-  outline: 1px solid black;
   width: calc(50% - 275px);
   height: 500px;
   padding:20px;
@@ -65,4 +63,24 @@ body {
   margin: 0;
   color:white;
   font-family: sans-serif;
+}
+
+h1{
+  color:mediumseagreen;
+}
+
+.orange{
+  color:orange;
+}
+
+.red{
+  color:tomato;
+}
+
+.blue{
+  color:dodgerblue;
+}
+
+.purple{
+  color:violet;
 }
