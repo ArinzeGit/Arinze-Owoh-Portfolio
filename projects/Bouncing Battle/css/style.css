@@ -14,6 +14,15 @@
   text-align: center;
 }
 
+h1.center{
+  margin-bottom: 0em;
+}
+
+p.center{
+  margin-top:0.5em ;
+  margin-bottom:0.5em ;
+}
+
 #player1Div, #player2Div {
   box-sizing:border-box;
   width: calc(50% - 275px);
@@ -22,7 +31,7 @@
 }
 
 canvas{
-  border:20px solid grey;
+  border:20px solid #505050;
   border-radius: 15px;
   box-shadow: 10px 10px 10px mediumseagreen;
   background-color: transparent;
@@ -61,11 +70,11 @@ body {
   background-image: url('../assets/backgroundImage.jpg');
   background-size: cover;
   margin: 0;
-  color:white;
+  color:black;
   font-family: sans-serif;
 }
 
-h1{
+.green{
   color:mediumseagreen;
 }
 
@@ -83,4 +92,17 @@ h1{
 
 .purple{
   color:violet;
+}
+
+p,label,select{
+  font-size: 20px;
+  color:#c8c8c8;
+  font-weight: 700;
+  font-family:cursive;
+}
+
+select{
+  background-color:black;
+  border-radius: 10px;
+  cursor:pointer;
 }
