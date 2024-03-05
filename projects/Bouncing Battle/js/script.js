@@ -452,15 +452,17 @@ window.onload = function init() {
     document.querySelector('#player1Score').innerHTML=player1Score;
     document.querySelector('#player2Score').innerHTML=player2Score;
     if(player1Score===10){
-      document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU WIN';
-      document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU LOSE';
+      document.querySelector('#winStatus1').innerHTML='<br><br>YOU WIN';
+      document.querySelector('#winStatus2').innerHTML='<br><br>YOU LOSE';
       backgroundMusic.pause();
       playGameOverSound();
+      gameOverAnimation();
     } else if(player2Score===10){
-      document.querySelector('#winStatus1').innerHTML='Game Over<br>YOU LOSE';
-      document.querySelector('#winStatus2').innerHTML='Game Over<br>YOU WIN';
+      document.querySelector('#winStatus1').innerHTML='<br><br>YOU LOSE';
+      document.querySelector('#winStatus2').innerHTML='<br><br>YOU WIN';
       backgroundMusic.pause();
       playGameOverSound();
+      gameOverAnimation();
     }
   }
 
@@ -468,6 +470,45 @@ window.onload = function init() {
   function playGameOverSound(){
     gameOverSound.currentTime = 0;
     gameOverSound.play();
+  }
+
+
+  function gameOverAnimation(){
+    ctx.font='bold 100px cursive';
+    ctx.fillStyle = "orange";
+    ctx.fillText("G", 68, 227);  
+    setTimeout(()=>{
+      ctx.fillStyle = "mediumseagreen";
+      ctx.fillText("A", 168, 227);
+    },1850);    
+    setTimeout(()=>{
+      ctx.fillStyle = "tomato";
+      ctx.fillText("M", 268, 227);
+    },3700);    
+    setTimeout(()=>{
+      ctx.fillStyle = "mediumseagreen";
+      ctx.fillText("E", 368, 227);
+    },5550);    
+    setTimeout(()=>{
+      ctx.fillStyle = "dodgerblue";
+      ctx.fillText("O", 37, 325);
+    },7400);    
+    setTimeout(()=>{
+      ctx.fillStyle = "violet";
+      ctx.fillText("V", 137, 325);
+    },9250);    
+    setTimeout(()=>{
+      ctx.fillStyle = "mediumseagreen";
+      ctx.fillText("E", 237, 325);
+    },11100);    
+    setTimeout(()=>{
+      ctx.fillStyle = "orange";
+      ctx.fillText("R", 337, 325);
+    },12950);    
+    setTimeout(()=>{
+      ctx.fillStyle = "tomato";
+      ctx.fillText("!", 437, 325);
+    },14800);
   }
  
 
@@ -608,5 +649,6 @@ window.onload = function init() {
     powerUpSound.currentTime = 0;
     powerUpSound.play();
   }
+
 
 };
