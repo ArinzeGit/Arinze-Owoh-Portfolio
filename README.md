@@ -12,7 +12,7 @@ I started learning to code on 25th September, 2023, after my final exams for Bac
 Here are my past [projects](projects)
 ## My Hobbies
 * I love coding 💻
-* I am a Speedcuber with Official National Records 🧠
+* I am a Speedcuber with Official [National Records](https://www.worldcubeassociation.org/persons/2019OWOH01) 🧠
 * I play table tennis really well 🏓
 * I play football ⚽
 ## My Challenges
