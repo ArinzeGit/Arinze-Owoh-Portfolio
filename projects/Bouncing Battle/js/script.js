@@ -1,7 +1,17 @@
 window.onload = function init() {
+
   console.log("page loaded and DOM is ready");
-  
+
+  const gameOverSound = document.querySelector('#gameOverSound');
+  const obstacleSound = document.querySelector('#obstacleSound');
+  obstacleSound.volume = 0.5;
+  const powerUpSound = document.querySelector('#powerUpSound');
+  const playerSound = document.querySelector('#playerSound');
+  const missSound = document.querySelector('#missSound');
+  const backgroundMusic = document.querySelector('#backgroundMusic');
+  backgroundMusic.volume = 0.3;
   const muteButton = document.querySelector('#muteButton');
+
   muteButton.addEventListener('click', function(){
     gameOverSound.muted = !gameOverSound.muted; //change the mute states of all audio elements between true and false
     obstacleSound.muted = !obstacleSound.muted;
@@ -11,20 +21,34 @@ window.onload = function init() {
     backgroundMusic.muted = !backgroundMusic.muted;
     muteButton.textContent = missSound.muted ? 'UNMUTE' : 'MUTE'; //Update the button text based on the mute state of one of the audio elements
   });
-  const gameOverSound = document.querySelector('#gameOverSound');
-  const obstacleSound = document.querySelector('#obstacleSound');
-  obstacleSound.volume = 0.5;
-  const powerUpSound = document.querySelector('#powerUpSound');
-  const playerSound = document.querySelector('#playerSound');
-  const missSound = document.querySelector('#missSound');
-  const backgroundMusic = document.querySelector('#backgroundMusic');
-  backgroundMusic.volume = 0.3;
+
+  const player1ColorSelector=document.querySelector('#player1ColorSelector');
+  player1ColorSelector.addEventListener('change',function(){
+    player1.color=player1ColorSelector.value;
+    drawPlayer(player1); //In case the animation frame is not running to immediately change the player color
+    document.querySelectorAll('.p1Color').forEach(element =>{
+      element.style.color=player1ColorSelector.value;
+    });
+  });
+  const player2ColorSelector=document.querySelector('#player2ColorSelector');
+  player2ColorSelector.addEventListener('change',function(){
+    player2.color=player2ColorSelector.value;
+    drawPlayer(player2);
+    document.querySelectorAll('.p2Color').forEach(element => {
+      element.style.color=player2ColorSelector.value;
+    });
+  });
+
+  const winStatus1=document.querySelector('#winStatus1');
+  const winStatus2=document.querySelector('#winStatus2');
+  const replayButtonDiv = document.querySelector('#replayButtonDiv');
+  let replayButton; // = document.querySelector('#replayButton') but I cannot assign now since the element will be created dynamically.
+  const canvas = document.querySelector("#gameCanvas");
+  const w = canvas.width; 
+  const h = canvas.height;
   const canvasBackgroundImage = new Image();
   canvasBackgroundImage.src = 'assets/canvasBackgroundImage.jpg';
-  let canvas = document.querySelector("#gameCanvas");
-  let ctx, animationId;
-  let w = canvas.width; 
-  let h = canvas.height;
+  let ctx, animationId,timerId;
   let distanceX, distanceY;
   let isArrowUpPressed = false;
   let isArrowDownPressed = false;
@@ -37,20 +61,7 @@ window.onload = function init() {
   let isP1LastHitter=false;
   let isP2LastHitter=false;
   let hitCount=0;
-  let player1ColorSelector=document.querySelector('#player1ColorSelector');
-  player1ColorSelector.addEventListener('change',function(){
-    player1.color=player1ColorSelector.value;
-    document.querySelectorAll('.p1Color').forEach(element =>{
-      element.style.color=player1ColorSelector.value;
-    });
-  });
-  let player2ColorSelector=document.querySelector('#player2ColorSelector');
-  player2ColorSelector.addEventListener('change',function(){
-    player2.color=player2ColorSelector.value;
-    document.querySelectorAll('.p2Color').forEach(element => {
-      element.style.color=player2ColorSelector.value;
-    });
-  });
+
   let ball={
     x:45,
     y:250,
@@ -59,6 +70,7 @@ window.onload = function init() {
     radius:10,
     color:"white"
   };
+
   let player1={
     x:0,
     y:0,
@@ -68,6 +80,7 @@ window.onload = function init() {
     color: 'mediumseagreen'
   };
   player1.y=(h-player1.height)/2;
+
   let player2={ 
     x:0,
     y:0,
@@ -78,6 +91,7 @@ window.onload = function init() {
   };
   player2.x=w-player2.width;
   player2.y=(h-player2.height)/2;
+
   let obstacle={
     x:(w-30)/2,
     y:-30,
@@ -87,6 +101,7 @@ window.onload = function init() {
     size:30,
     color: 'red'
   };
+
   let powerUp={
     x:w/2,
     y:-940,//carefully chosen spot such that the powerUp will pass twice untouched by the ball of speed (5,0) if obstacles haven't randomised the game yet
@@ -135,6 +150,9 @@ window.onload = function init() {
 
 
   function startStopBallLoop() {
+    replayButtonDiv.innerHTML= '<button id="replayButton">REPLAY</button>' //This makes replay button appear once the game is started
+    replayButton = document.querySelector('#replayButton'); //I can assign the element now that it exists
+    replayButton.addEventListener('click', replay);
     if (!animationId) { //if the animation frame is not already running, call ballLoop
       ballLoop();
       playBackgroundMusic();
@@ -148,11 +166,58 @@ window.onload = function init() {
   }
 
 
+  function replay(){
+    if (animationId) { //if the animation frame is running, stop it.
+      cancelAnimationFrame(animationId);
+      animationId = undefined;
+    }
+    resetAllVariables();
+    startStopBallLoop();
+  }
+
+
   function playBackgroundMusic(){
     if((player1Score!==10)&&(player2Score!==10)){
       backgroundMusic.play();
     }
   }
+
+
+  function resetAllVariables(){
+    backgroundMusic.pause();
+    backgroundMusic.currentTime=0;
+    gameOverSound.pause();
+    didPlayer1Hit=true;
+    didPlayer2Hit=true;
+    isP1LastHitter=false;
+    isP2LastHitter=false;
+    hitCount=0;
+    player1Score=0;
+    player2Score=0;
+    updateScore();
+    winStatus1.innerHTML='';
+    winStatus2.innerHTML='';
+    ball.x=45;
+    ball.y=250;
+    ball.speedX=5;
+    ball.speedY=0;
+    clearTimeout(timerId); //abort any powerUp timer waiting to half the height of a player
+    player1.height=100; //in case the player is on powerUp
+    player1.y=(h-player1.height)/2; //then centralize
+    player2.height=100;
+    player2.y=(h-player2.height)/2;
+    obstacle.x=(w-30)/2;
+    obstacle.y=-30;
+    obstacle.speed=5;
+    obstacle.angle=0;
+    obstacle.angularSpeed=0.001*Math.PI;
+    obstacle.size=30;
+    powerUp.x=w/2;
+    powerUp.y=-940;
+    powerUp.speed=3;
+    powerUp.radius=45;
+  }
+
 
   function ballLoop(){
     ctx = canvas.getContext('2d');
@@ -452,14 +517,14 @@ window.onload = function init() {
     document.querySelector('#player1Score').innerHTML=player1Score;
     document.querySelector('#player2Score').innerHTML=player2Score;
     if(player1Score===10){
-      document.querySelector('#winStatus1').innerHTML='<br><br>YOU WIN';
-      document.querySelector('#winStatus2').innerHTML='<br><br>YOU LOSE';
+      winStatus1.innerHTML='<br><br>YOU WIN';
+      winStatus2.innerHTML='<br><br>YOU LOSE';
       backgroundMusic.pause();
       playGameOverSound();
       gameOverAnimation();
     } else if(player2Score===10){
-      document.querySelector('#winStatus1').innerHTML='<br><br>YOU LOSE';
-      document.querySelector('#winStatus2').innerHTML='<br><br>YOU WIN';
+      winStatus1.innerHTML='<br><br>YOU LOSE';
+      winStatus2.innerHTML='<br><br>YOU WIN';
       backgroundMusic.pause();
       playGameOverSound();
       gameOverAnimation();
@@ -622,7 +687,7 @@ window.onload = function init() {
       if(isP1LastHitter){
         player1.height*=2; //double paddle size
         player1.y-=player1.height/4; //centralize paddle
-        setTimeout(()=>{ //wait 10 seconds
+        timerId=setTimeout(()=>{ //wait 10 seconds (timerId can be used to abort the function before it executes using clearTimeout)
           player1.height/=2; //restore paddle size
           player1.y+=player1.height/2; //centralize paddle
           u.speed=3; //and let powerUp start falling again
@@ -630,13 +695,13 @@ window.onload = function init() {
       }else if(isP2LastHitter){
         player2.height*=2; //double paddle size
         player2.y-=player2.height/4; //centralize paddle
-        setTimeout(()=>{ //wait 10 seconds
+        timerId=setTimeout(()=>{ //wait 10 seconds
           player2.height/=2; //restore paddle size
           player2.y+=player2.height/2; //centralize paddle
           u.speed=3; //and let powerUp start falling again
         },10000);
       }else{ //neither of the players has hit the ball
-        setTimeout(()=>{
+        timerId=setTimeout(()=>{
           u.speed=3; //let powerUp start falling again after 10 seconds
         },10000);
       }

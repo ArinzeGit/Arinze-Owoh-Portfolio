@@ -112,3 +112,7 @@ select{
   font-family: sans-serif;
   font-size: 50px;
 }
+
+#replayButtonDiv{
+  display: inline;
+}
