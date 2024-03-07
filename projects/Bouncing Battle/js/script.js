@@ -500,7 +500,7 @@ window.onload = function init() {
 
 
   function playPlayerSound(){
-    playerSound.currentTime = 0;
+    playerSound.currentTime = 100/1000;
     playerSound.play();
   }
 
