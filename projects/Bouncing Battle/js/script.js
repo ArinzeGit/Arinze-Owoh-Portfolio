@@ -376,30 +376,26 @@ window.onload = function init() {
 
 
   function handleBallBoundaries(b){
-    //for horizontal boundaries:
+    //for vertical boundaries:
     if((b.x + b.radius)> w){
-      //return ball to collision point
+      //it hit right canvas side so return ball to surface and direct ball left
       b.x =w-b.radius;
-      // change the direction of movement on X plane
-      b.speedX = -b.speedX;
+      b.speedX=-Math.abs(b.speedX);
     } else if((b.x-b.radius)<0){
-      //return ball to collision point
+      //it hit left canvas side so return ball to surface and direct ball right
       b.x =b.radius;
-      // change the direction of movement on X plane
-      b.speedX = -b.speedX;
+      b.speedX=Math.abs(b.speedX);
     }
 
-    //for vertical boundaries:
+    //for horizontal boundaries:
     if((b.y + b.radius)> h){
-      //return ball to collision point
+      //it hit bottom canvas side so return ball to surface and direct ball up
       b.y =h-b.radius;
-      // change the direction of movement on Y plane
-      b.speedY = -b.speedY;
+      b.speedY=-Math.abs(b.speedY);
     } else if((b.y-b.radius)<0){
-      //return ball to collision point
+      //it hit top canvas side so return ball to surface and direct ball down
       b.y =b.radius;
-      // change the direction of movement on Y plane
-      b.speedY = -b.speedY;
+      b.speedY=Math.abs(b.speedY);
     }
   }
 
@@ -500,7 +496,7 @@ window.onload = function init() {
 
 
   function playPlayerSound(){
-    playerSound.currentTime = 100/1000;
+    playerSound.currentTime = 75/1000;
     playerSound.play();
   }
 
@@ -585,38 +581,57 @@ window.onload = function init() {
       if(Math.abs(distanceX)<Math.abs(distanceY)){
         //it hit the vertex more on a horizontal side of the rectangle(or entirely on a horizontal side if distanceX is zero)
         if(distanceY>0){
+          //it hit bottom side so return ball to surface and direct ball down
           b.y=p.y+p.height+b.radius;
-          b.speedY=Math.abs(b.speedY);//it hit bottom side so return ball to surface and direct ball down
-        } else { 
+          b.speedY=Math.abs(b.speedY);
+        } else {
+          //it hit top side so return ball to surface and direct ball up 
           b.y=p.y-b.radius;
-          b.speedY=-Math.abs(b.speedY); //it hit top side so return ball to surface and direct ball up
+          b.speedY=-Math.abs(b.speedY); 
         }
       } else if(Math.abs(distanceX)>Math.abs(distanceY)){
         //it hit the vertex more on a vertical side of the rectangle(or entirely on a vertical side if distanceY is zero)
         if(distanceX>0){
+          //it hit right side so return ball to surface and direct ball right
           b.x=p.x+p.width+b.radius; 
-          b.speedX=Math.abs(b.speedX); //it hit right side so return ball to surface and direct ball right 
+          b.speedX=Math.abs(b.speedX);  
         } else{
+          //it hit left side so return ball to surface and direct ball left
           b.x=p.x-b.radius;
-          b.speedX=-Math.abs(b.speedX); //it hit left side so return ball to surface and direct ball left
+          b.speedX=-Math.abs(b.speedX); 
         }
       } else {//i.e Math.abs(distanceX)=Math.abs(distanceY) 
-        if(distanceX===0){ //as in |0|=|0| meaning the ball center has been forced by canvas top/bottom boundaries to be inside the player
-          if(b.y<0.5*h)b.y=p.y-b.radius;//it happened at a canvas top corner so force the ball to above player and crossing canvas boundary
-          else b.y=p.y+p.height+b.radius;//it happened at a canvas bottom corner so force the ball to below player and crossing canvas boundary
-        } else{//as in e.g |-3|=|+3| meaning it hit the vertex so evenly that the circle center and the rectangle's vertex form opposite vertices of a square
+        if(distanceX===0){ 
+          //as in |0|=|0| meaning the ball center has been forced by 'relative speed' or 'canvas boundaries' into the inside of player
+          //Can only happen from top/bottom of ball cuz ball is never fast enough to enter player except combining an opposing vertical speed of player
+          //or when the ball is crushed between player and canvas
+          if(b.y<p.y+0.5*p.height){
+            //it happened at top of player so return ball to surface of player and direct ball up 
+            b.y=p.y-b.radius;
+            b.speedY=-Math.abs(b.speedY);
+          }else {
+            //it happened at bottom of player so return ball to surface of player and direct ball down
+            b.y=p.y+p.height+b.radius;
+            b.speedY=Math.abs(b.speedY);
+          }
+        } else{
+          //as in e.g |-3|=|+3| meaning it hit the vertex so evenly that the circle center and the rectangle's vertex form opposite vertices of a square
           if(distanceY>0&&distanceX>0){
+            //it hit bottomRight corner so move ball bottomRightWards
             b.speedY=Math.abs(b.speedY); 
-            b.speedX=Math.abs(b.speedX); //it hit bottomRight corner so move ball bottomRightWards
+            b.speedX=Math.abs(b.speedX); 
           } else if(distanceY>0&&distanceX<0){
+            // ...bottomLeftWards
             b.speedY=Math.abs(b.speedY); 
-            b.speedX=-Math.abs(b.speedX); // ...bottomLeftWards
+            b.speedX=-Math.abs(b.speedX); 
           } else if(distanceY<0&&distanceX>0){
+            // ...topRightWards
             b.speedY=-Math.abs(b.speedY); 
-            b.speedX=Math.abs(b.speedX); // ...topRightWards
+            b.speedX=Math.abs(b.speedX); 
           } else {
+             // ...topLeftWards
             b.speedY=-Math.abs(b.speedY); 
-            b.speedX=-Math.abs(b.speedX); // ...topLeftWards
+            b.speedX=-Math.abs(b.speedX);
           }
         }
       }
