@@ -25,30 +25,36 @@ window.onload = function init() {
   const player1ColorSelector=document.querySelector('#player1ColorSelector');
   player1ColorSelector.addEventListener('change',function(){
     player1.color=player1ColorSelector.value;
-    drawPlayer(player1); //In case the animation frame is not running to immediately change the player color
     document.querySelectorAll('.p1Color').forEach(element =>{
       element.style.color=player1ColorSelector.value;
     });
+    if(replayButton)drawPlayer(player1); //if game has started, draw the player 
   });
   const player2ColorSelector=document.querySelector('#player2ColorSelector');
   player2ColorSelector.addEventListener('change',function(){
     player2.color=player2ColorSelector.value;
-    drawPlayer(player2);
     document.querySelectorAll('.p2Color').forEach(element => {
       element.style.color=player2ColorSelector.value;
     });
+    if(replayButton)drawPlayer(player2);
   });
 
   const winStatus1=document.querySelector('#winStatus1');
   const winStatus2=document.querySelector('#winStatus2');
   const replayButtonDiv = document.querySelector('#replayButtonDiv');
   let replayButton; // = document.querySelector('#replayButton') but I cannot assign now since the element will be created dynamically.
+  const dropdownButton = document.querySelector(".dropdownButton");
+  const dropdownContent = document.querySelector(".dropdownContent");
+  dropdownButton.addEventListener("click", function () {
+    dropdownContent.style.display = (dropdownContent.style.display === "block") ? "none" : "block";
+  });
   const canvas = document.querySelector("#gameCanvas");
   const w = canvas.width; 
   const h = canvas.height;
   const canvasBackgroundImage = new Image();
   canvasBackgroundImage.src = 'assets/canvasBackgroundImage.jpg';
-  let ctx, animationId,timerId;
+  let ctx;
+  let animationId,timerId;//flag variables to store return values of requestAnimationFrame() and setTimeout() for future manipulation
   let distanceX, distanceY;
   let isArrowUpPressed = false;
   let isArrowDownPressed = false;
@@ -61,6 +67,8 @@ window.onload = function init() {
   let isP1LastHitter=false;
   let isP2LastHitter=false;
   let hitCount=0;
+  let startTime1, startTime2, timeRemaining1,timeRemaining2; //for keeping track of players' elapsed powerUp time between pause/play
+  const timeGiven=10000;
 
   let ball={
     x:45,
@@ -150,18 +158,22 @@ window.onload = function init() {
 
 
   function startStopBallLoop() {
-    replayButtonDiv.innerHTML= '<button id="replayButton">REPLAY</button>' //This makes replay button appear once the game is started
-    replayButton = document.querySelector('#replayButton'); //I can assign the element now that it exists
-    replayButton.addEventListener('click', replay);
-    if (!animationId) { //if the animation frame is not already running, call ballLoop
+    if (!replayButton) {
+      replayButtonDiv.innerHTML= '<button id="replayButton">REPLAY</button>' //This makes replay button appear when game is started
+      replayButton = document.querySelector('#replayButton'); //I can assign the element now that it exists
+      replayButton.addEventListener('click', replay);
+    }
+    if (!animationId) { //if the animation frame is not already running, let it run
       ballLoop();
       playBackgroundMusic();
       playPauseButton.textContent ='PAUSE';
-    } else { //if the animation frame is running, cancel it 
+      resumeSetTimeout();
+    } else { //if the animation frame is running, stop it 
       cancelAnimationFrame(animationId);
-      animationId = undefined; // Reset the variable to indicate that the loop is stopped
+      animationId = undefined; // Reset the flag variable to indicate that the loop is stopped
       backgroundMusic.pause();
       playPauseButton.textContent ='PLAY';
+      pauseSetTimeout();
     }
   }
 
@@ -183,6 +195,34 @@ window.onload = function init() {
   }
 
 
+  function pauseSetTimeout(){
+    if((isP1LastHitter)||(isP2LastHitter))clearTimeout(timerId); //don't bother if no one has hit the ball
+    timeRemaining1-=Date.now()-startTime1;
+    timeRemaining2-=Date.now()-startTime2;
+  }
+
+
+  function resumeSetTimeout(){
+    if((player1Score!==10)&&(player2Score!==10)){
+      if(timeRemaining1>0){
+        timerId=setTimeout(()=>{
+          player1.height/=2; //restore paddle size
+          player1.y+=player1.height/2; //centralize paddle
+          powerUp.speed=3; //and let powerUp start falling again
+        },timeRemaining1);
+        startTime1=Date.now();
+      }else if(timeRemaining2>0){
+        timerId=setTimeout(()=>{ 
+          player2.height/=2; //restore paddle size
+          player2.y+=player2.height/2; //centralize paddle
+          powerUp.speed=3; //and let powerUp start falling again
+        },timeRemaining2);
+        startTime2=Date.now();
+      }
+    }
+  }
+
+
   function resetAllVariables(){
     backgroundMusic.pause();
     backgroundMusic.currentTime=0;
@@ -197,11 +237,15 @@ window.onload = function init() {
     updateScore();
     winStatus1.innerHTML='';
     winStatus2.innerHTML='';
+    clearTimeout(timerId); //abort any powerUp setTimeout waiting to half the height of a player
+    startTime1=0;
+    startTime2=0;
+    timeRemaining1=0;
+    timeRemaining2=0;
     ball.x=45;
     ball.y=250;
     ball.speedX=5;
     ball.speedY=0;
-    clearTimeout(timerId); //abort any powerUp timer waiting to half the height of a player
     player1.height=100; //in case the player is on powerUp
     player1.y=(h-player1.height)/2; //then centralize
     player2.height=100;
@@ -518,12 +562,14 @@ window.onload = function init() {
       backgroundMusic.pause();
       playGameOverSound();
       gameOverAnimation();
+      clearTimeout(timerId); //abort any powerUp setTimeout waiting to half the height of a player
     } else if(player2Score===10){
       winStatus1.innerHTML='<br><br>YOU LOSE';
       winStatus2.innerHTML='<br><br>YOU WIN';
       backgroundMusic.pause();
       playGameOverSound();
       gameOverAnimation();
+      clearTimeout(timerId); //abort any powerUp setTimeout waiting to half the height of a player
     }
   }
 
@@ -706,7 +752,9 @@ window.onload = function init() {
           player1.height/=2; //restore paddle size
           player1.y+=player1.height/2; //centralize paddle
           u.speed=3; //and let powerUp start falling again
-        },10000);
+        },timeGiven);
+        startTime1=Date.now();
+        timeRemaining1=timeGiven;
       }else if(isP2LastHitter){
         player2.height*=2; //double paddle size
         player2.y-=player2.height/4; //centralize paddle
@@ -714,11 +762,13 @@ window.onload = function init() {
           player2.height/=2; //restore paddle size
           player2.y+=player2.height/2; //centralize paddle
           u.speed=3; //and let powerUp start falling again
-        },10000);
+        },timeGiven);
+        startTime2=Date.now();
+        timeRemaining2=timeGiven;
       }else{ //neither of the players has hit the ball
         timerId=setTimeout(()=>{
           u.speed=3; //let powerUp start falling again after 10 seconds
-        },10000);
+        },timeGiven);
       }
 
     }
