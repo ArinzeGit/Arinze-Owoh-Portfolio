@@ -69,6 +69,7 @@ window.onload = function init() {
   let hitCount=0;
   let startTime1, startTime2, timeRemaining1,timeRemaining2; //for keeping track of players' elapsed powerUp time between pause/play
   const timeGiven=10000;
+  const winScore=10;
 
   let ball={
     x:45,
@@ -118,6 +119,16 @@ window.onload = function init() {
     color1:"green",
     color2:"pink"
   };
+
+  let p1Space={ //range of free space between player1 and obstacle, used for the hitMissChecker function 
+    x1:45,
+    x2:60
+  }
+
+  let p2Space={ //range of free space between player2 and obstacle, used for the hitMissChecker function
+    x1:440,
+    x2:455
+  }
 
 
   document.addEventListener('keydown', keydownHandler);
@@ -189,7 +200,7 @@ window.onload = function init() {
 
 
   function playBackgroundMusic(){
-    if((player1Score!==10)&&(player2Score!==10)){
+    if((player1Score!==winScore)&&(player2Score!==winScore)){
       backgroundMusic.play();
     }
   }
@@ -203,7 +214,7 @@ window.onload = function init() {
 
 
   function resumeSetTimeout(){
-    if((player1Score!==10)&&(player2Score!==10)){
+    if((player1Score!==winScore)&&(player2Score!==winScore)){
       if(timeRemaining1>0){
         timerId=setTimeout(()=>{
           player1.height/=2; //restore paddle size
@@ -266,7 +277,7 @@ window.onload = function init() {
   function ballLoop(){
     ctx = canvas.getContext('2d');
     
-    if((player1Score===10)||(player2Score===10)){//loop gets cancelled when called if someone is on 10
+    if((player1Score===winScore)||(player2Score===winScore)){//loop gets cancelled when called if someone is on winScore
       cancelAnimationFrame(animationId);
       animationId = undefined; // Reset the variable to indicate that the loop is stopped
     }else{
@@ -474,9 +485,9 @@ window.onload = function init() {
 
 
   function hitMissChecker(){
-    if((ball.x<60)&&(ball.x>45)&&(ball.speedX===-Math.abs(ball.speedX))){//ball close to and heading towards player1
+    if((ball.x>p1Space.x1)&&(ball.x<p1Space.x2)&&(ball.speedX===-Math.abs(ball.speedX))){//ball close to and heading towards player1
       didPlayer1Hit=false;
-    }else if ((ball.x>440)&&(ball.x<455)&&(ball.speedX===Math.abs(ball.speedX))){//ball close to and heading towards player2
+    }else if ((ball.x>p2Space.x1)&&(ball.x<p2Space.x2)&&(ball.speedX===Math.abs(ball.speedX))){//ball close to and heading towards player2
       didPlayer2Hit=false;
     }
     if(overlap(ball,player1)){ // a hit!
@@ -492,13 +503,13 @@ window.onload = function init() {
       accelerateBall();
       playPlayerSound();
     }
-    if((ball.x>60)&&(ball.speedX===Math.abs(ball.speedX))&&(didPlayer1Hit===false)){//ball going away from player1 without contact (a miss!)
+    if((ball.x>p1Space.x2)&&(ball.speedX===Math.abs(ball.speedX))&&(didPlayer1Hit===false)){//ball going away from player1 without contact (a miss!)
       player2Score+=1;
       updateScore();
       didPlayer1Hit=true;//reset to avoid detecting the miss continously
       deccelerateBall();
       playMissSound();
-    } else if ((ball.x<440)&&(ball.speedX===-Math.abs(ball.speedX))&&(didPlayer2Hit===false)){//ball going away from player2 without contact (a miss!)
+    } else if ((ball.x<p2Space.x1)&&(ball.speedX===-Math.abs(ball.speedX))&&(didPlayer2Hit===false)){//ball going away from player2 without contact (a miss!)
       player1Score+=1;
       updateScore();
       didPlayer2Hit=true;//reset to avoid detecting the miss continously
@@ -546,7 +557,7 @@ window.onload = function init() {
 
 
   function playMissSound(){
-    if((player1Score!==10)&&(player2Score!==10)){
+    if((player1Score!==winScore)&&(player2Score!==winScore)){
       missSound.currentTime = 0;
       missSound.play();
     }
@@ -556,14 +567,14 @@ window.onload = function init() {
   function updateScore(){
     document.querySelector('#player1Score').innerHTML=player1Score;
     document.querySelector('#player2Score').innerHTML=player2Score;
-    if(player1Score===10){
+    if(player1Score===winScore){
       winStatus1.innerHTML='<br><br>YOU WIN';
       winStatus2.innerHTML='<br><br>YOU LOSE';
       backgroundMusic.pause();
       playGameOverSound();
       gameOverAnimation();
       clearTimeout(timerId); //abort any powerUp setTimeout waiting to half the height of a player
-    } else if(player2Score===10){
+    } else if(player2Score===winScore){
       winStatus1.innerHTML='<br><br>YOU LOSE';
       winStatus2.innerHTML='<br><br>YOU WIN';
       backgroundMusic.pause();
