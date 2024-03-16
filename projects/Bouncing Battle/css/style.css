@@ -121,29 +121,29 @@ select{
   display: inline-block;
 }
 
-.dropdown {
+#dropdown {
   position: relative;
   display: inline-block;
   float: right;
 }
 
-.dropdownButton {
+#dropdownButton {
   background-color:mediumseagreen; /*#4CAF50;*/
   border: none;
   color:black;
 }
 
-.dropdownButton:hover {
+#dropdownButton:hover {
   color:orange;
   background-color:#4CAF50;
   transform: scale(1);
 }
 
-.dropdownButton:active {
+#dropdownButton:active {
   transform: scale(1.1);
 }
 
-.dropdownContent {
+#dropdownContent {
   display: none;
   position: absolute;
   bottom: 40px;
@@ -157,25 +157,25 @@ select{
   padding: 15px;
 }
 
-.dropdownContent a {
+#dropdownContent a {
   color: orange;
   padding: 5px 16px;
   display: block;
 }
 
-.dropdownContent a:hover {
+#dropdownContent a:hover {
   color:yellow;
   background-color: gray;
 }
 
-.license a {
+#license a {
   display:inline;
 }
 
-.license p{
+#license p{
   font-size: 14px;
 }
 
-.license li{
+#license li{
   font-size: 11px;
 }

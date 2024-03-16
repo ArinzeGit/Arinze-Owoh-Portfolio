@@ -43,10 +43,16 @@ window.onload = function init() {
   const winStatus2=document.querySelector('#winStatus2');
   const replayButtonDiv = document.querySelector('#replayButtonDiv');
   let replayButton; // = document.querySelector('#replayButton') but I cannot assign now since the element will be created dynamically.
-  const dropdownButton = document.querySelector(".dropdownButton");
-  const dropdownContent = document.querySelector(".dropdownContent");
+  const dropdownButton = document.querySelector("#dropdownButton");
+  const dropdownContent = document.querySelector("#dropdownContent");
   dropdownButton.addEventListener("click", function () {
-    dropdownContent.style.display = (dropdownContent.style.display === "block") ? "none" : "block";
+    dropdownContent.style.display =(dropdownContent.style.display === "block") ? "none" : "block";
+  });
+  document.addEventListener('click', function(evt){ //to close menu if you click outside of menu and button
+    if (!dropdownContent.contains(evt.target) && !dropdownButton.contains(evt.target)){
+      //if I don't exclude button, when button is clicked for opening it will open and close menu due to event propagation
+      dropdownContent.style.display="none";
+    }
   });
   const canvas = document.querySelector("#gameCanvas");
   const w = canvas.width; 
