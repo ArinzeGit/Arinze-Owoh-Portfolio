@@ -168,10 +168,14 @@ select{
   background-color: gray;
 }
 
-.dropdownContent .attributions a {
+.license a {
   display:inline;
 }
 
-.attributions p, .attributions li{
-  font-size: 12px;
+.license p{
+  font-size: 14px;
+}
+
+.license li{
+  font-size: 11px;
 }
