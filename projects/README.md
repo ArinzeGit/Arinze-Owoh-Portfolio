@@ -1,7 +1,7 @@
 # My Projects
 Here I showcase the projects I completed during my coding journey. Each project has a README file containing context and description of the project, how to run them, technologies used, and challenges faced. I did each project to apply the skills as I learned them. I have listed them  below in the order I completed them. 
 ## Contents
-* [CSS Challenge](../../qr-code-component) completed October, 2023
+* [CSS Challenge](../../../qr-code-component) completed October, 2023
 * [Omah Lay Fanpage CSS Project](Omah%20Lay%20Fanpage%20CSS%20Project) completed November, 2023
 * [CSS Practice 1](CSS%20Practice%201) completed November, 2023
 * [CSS Practice 2](CSS%20Practice%202) completed November, 2023
