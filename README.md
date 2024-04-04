@@ -2,12 +2,16 @@
 ## About Me
 My name is Arinzechukwu Dennings Owoh. I am a Nigerian Front-End Web Developer living in Abuja, Nigeria.
 ## My Coding Journey
-I started learning to code on 25th September, 2023, after my final exams for Bachelor's Degree in Electrical/Electronics Engineering in September, 2023. I had no background in computer programming so I am self-taught. I learned HTML and CSS using edX online courses. In November, 2023, I started learning JavaScript also on edX. I build mini projects along the way to apply what I learn. I started learning Git and joined GitHub on 31st December, 2023. February 2024, I decided to brush up on fundamentals with Havard's "CS50 Introduction to Computer Science" course on edX while building a game with Vanilla JavaScript (inspired by table tennis of course). March 2024, I finished building my game and finished Havard's CS50 course. I finally started learning the long awaited REACT Framework. I will keep updating this part of my portfolio as I learn more technologies...
+I started learning to code on **25th September 2023**, after my final exams for Bachelor's Degree in Electrical/Electronics Engineering in September, 2023. I had no background in computer programming so I am self-taught. I learned **HTML** and **CSS** using edX online courses. In **November 2023**, I started learning **JavaScript** also on edX. I built mini projects along the way to apply what I learned. On **31st December 2023**, I started learning **Git** and joined **GitHub**. In **February 2024**, I decided to brush up on **fundamentals** with Havard's "CS50 Introduction to Computer Science" course on edX while building a vanilla JavaScript [game](https://github.com/ArinzeGit/Bouncing-Battle) (inspired by table tennis of course!) to mark the end of vanilla JavaScripting. **March 2024**, I finished building the game, finished Havard's CS50 course and finally started learning the long awaited **React-JS** framework. **April 2024**, I started learning **React-TS** and **Bootstrap** CSS framework and building dynamic apps with them. I will keep updating this journey as I learn more technologies...
 ## My Skills
 * HTML
 * CSS
 * JavaScript
 * React Framework
+* TypeScript
+* Bootstrap CSS Framework
+* Node-JS
+* Vite
 * Git/GitHub Proficiency
 ## My Past Projects
 Here are my past [projects](projects)
