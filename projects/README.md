@@ -1,5 +1,5 @@
 # My Projects
-Here I showcase the projects I completed during my coding journey. I have listed them in the order I completed them. I did each project to apply the skills I learned. Each project has a README file containing information about the project.
+Here I showcase the projects I completed during my coding journey. I have listed them in the order I completed them. I did each project to apply the skills I learned. Each project has a README file containing information about the project and link to the live site.
 ## Contents
 * [CSS Challenge](https://github.com/ArinzeGit/CSS-Challenge) (HTML, CSS) **completed October, 2023**
 * [Omah Lay Fanpage CSS Project](https://github.com/ArinzeGit/Omah-Lay-FanPage-CSS-Project) (HTML, CSS) **completed November, 2023**
