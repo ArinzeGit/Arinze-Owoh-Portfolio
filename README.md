@@ -6,10 +6,11 @@ I started learning to code on **25th September 2023**, after my final exams for 
 ## My Skills
 * HTML
 * CSS
+* Flexbox
+* Bootstrap CSS Framework
 * JavaScript
 * React Framework
 * TypeScript
-* Bootstrap CSS Framework
 * Node-JS
 * Vite
 * Git/GitHub Proficiency
