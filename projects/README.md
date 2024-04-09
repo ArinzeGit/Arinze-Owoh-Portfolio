@@ -14,3 +14,4 @@ Here I showcase the projects I completed during my coding journey. I have listed
 * [Bouncing Battle](https://github.com/ArinzeGit/Bouncing-Battle) `HTML, CSS, JavaScript` **completed March, 2024**
 * [First React App](https://github.com/ArinzeGit/First-React-App) `HTML, CSS, TypeScript, Bootstrap, React, Node.js, Vite` **completed April, 2024**
 * [QR Code Component With React-TS](https://github.com/ArinzeGit/QR-Code-Component-With-React-TS) `HTML, CSS, TypeScript, Bootstrap, Flexbox, React, Node.js, Vite` **completed April, 2024**
+* [Intro Component With Sign Up Form](https://github.com/ArinzeGit/Intro-Component-With-Sign-Up-Form) `HTML, CSS, TypeScript, Bootstrap, Flexbox, React, Node.js, Vite` **completed April, 2024**
