@@ -15,3 +15,4 @@ Here I showcase the projects I completed during my coding journey. I have listed
 * [First React App](https://github.com/ArinzeGit/First-React-App) `HTML, CSS, TypeScript, Bootstrap, React, Node.js, Vite` **completed April, 2024**
 * [QR Code Component With React-TS](https://github.com/ArinzeGit/QR-Code-Component-With-React-TS) `HTML, CSS, TypeScript, Bootstrap, Flexbox, React, Node.js, Vite` **completed April, 2024**
 * [Intro Component With Sign Up Form](https://github.com/ArinzeGit/Intro-Component-With-Sign-Up-Form) `HTML, CSS, TypeScript, Bootstrap, Flexbox, React, Node.js, Vite` **completed April, 2024**
+* [Fylo Dark Theme Landing Page](https://github.com/ArinzeGit/Fylo-Dark-Theme-Landing-Page) `HTML, CSS, TypeScript, Flexbox, CSS Grid, React, Node.js, Vite` **completed April, 2024**
