@@ -20,4 +20,4 @@ Here I showcase the projects I completed during my coding journey. I have listed
 - [Intro Component With Sign Up Form](https://github.com/ArinzeGit/Intro-Component-With-Sign-Up-Form) `HTML, CSS, TypeScript, Bootstrap, Flexbox, React, Node.js, Vite` **completed April, 2024**
 - [Fylo Dark Theme Landing Page](https://github.com/ArinzeGit/Fylo-Dark-Theme-Landing-Page) `HTML, CSS, TypeScript, Bootstrap, Flexbox, CSS Grid, React, Node.js, Vite` **completed April, 2024**
 - [Advice Generator App](https://github.com/ArinzeGit/Advice-Generator-App) `HTML, CSS, TypeScript, Flexbox, React, Node.js, Vite, APIs` **completed April, 2024**
-- [IP Address Tracker](https://github.com/ArinzeGit/IP-Address-Tracker) `HTML, CSS, TypeScript, Flexbox, React, Node.js, Vite, APIs` **completed May, 2024**
+- [IP Address Tracker](https://github.com/ArinzeGit/IP-Address-Tracker) `HTML, CSS, TypeScript, Flexbox, CSS Grid, React, Node.js, Vite, APIs` **completed May, 2024**
