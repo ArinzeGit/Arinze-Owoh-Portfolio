@@ -22,3 +22,4 @@ Here I showcase the projects I completed during my coding journey. I have listed
 - [Advice Generator App](https://github.com/ArinzeGit/Advice-Generator-App) `HTML, CSS, Flexbox, TypeScript, React, Node.js, Vite, APIs` **completed April, 2024**
 - [IP Address Tracker](https://github.com/ArinzeGit/IP-Address-Tracker) `HTML, CSS, CSS Modules, Flexbox, CSS Grid, TypeScript, React, Node.js, Vite, APIs` **completed May, 2024**
 - [Conquering Responsive Layouts Final Challenge Solution](https://github.com/ArinzeGit/Conquering-Responsive-Layouts-Final-Challenge-Solution) `HTML, CSS, Flexbox, JavaScript` **completed June, 2024**
+- [From Figma To Code Final Challenge Solution](https://github.com/ArinzeGit/From-Figma-To-Code-Final-Challenge-Solution) `HTML, CSS, CSS Modules, Flexbox, CSS Grid, TypeScript, React, Node.js, Vite` **completed June, 2024**
