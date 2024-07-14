@@ -26,7 +26,7 @@ My name is Arinzechukwu Dennings Owoh. I am a Nigerian Front-End Web Developer l
 
 ## My Past Projects
 
-Here are my past [projects](projects)
+Here are my past [PROJECTS](projects)
 
 ## My Hobbies
 
