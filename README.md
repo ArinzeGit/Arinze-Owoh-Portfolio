@@ -17,20 +17,12 @@ My name is Arinzechukwu Dennings Owoh. I am a Nigerian Front-End Web Developer l
 - In **July 2024**, I started learning `Unit Testing` with `Jest and RTL` on [Udemy](https://www.udemy.com/).
 - I will keep updating this journey as I learn more technologies.😃
 
-## My Skills
+## Technical Skills
 
-- HTML
-- CSS
-- Flexbox
-- Bootstrap CSS Framework
-- JavaScript
-- React Framework
-- TypeScript
-- Node-JS
-- Vite
-- Git/GitHub Proficiency
-- Jest
-- React Testing Library
+- **Languages:** HTML, CSS, JavaScript, TypeScript
+- **Frameworks/Libraries:** React, React Testing Library, JEST, Bootstrap
+- **Tools:** Git, GitHub, VSCode, Vite, Node.js, Slack, Asana Board, Discord
+- **Other Skills:** API Integration, Testing
 
 ## My Past Projects
 
