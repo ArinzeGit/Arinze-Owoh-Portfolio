@@ -22,7 +22,7 @@ My name is Arinzechukwu Dennings Owoh. I am a Nigerian Front-End Web Developer l
 - **Languages:** HTML, CSS, JavaScript, TypeScript
 - **Frameworks/Libraries:** React, React Testing Library, JEST, Bootstrap
 - **Tools:** Git, GitHub, VSCode, Vite, Node.js, Slack, Asana Board, Discord
-- **Other Skills:** API Integration, Testing
+- **Other Skills:** API Integration, Testing (RTL and JEST)
 
 ## My Past Projects
 
