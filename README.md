@@ -15,12 +15,13 @@ My name is Arinzechukwu Dennings Owoh. I am a Nigerian Front-End Web Developer l
 - In **May 2024**, responsiveness got more tricky as design layouts got more complex so I took the [Conquering Responsive Layouts](https://courses.kevinpowell.co/conquering-responsive-layouts) course by [Kevin Powell](https://www.youtube.com/@KevinPowell).
 - Thus far, I built from PDF designs files so in **June 2024**, I took the [From Figma to Code](https://www.coursera.org/learn/from-figma-to-code) course on [Coursera](https://www.coursera.org/) to learn to build from Figma design files.
 - In **July 2024**, I started learning `Unit Testing` with `Jest and RTL` on [Udemy](https://www.udemy.com/).
+- Still **July 2024**, I started learning and using `Tailwind CSS`
 - I will keep updating this journey as I learn more technologies.😃
 
 ## Technical Skills
 
 - **Languages:** HTML, CSS, JavaScript, TypeScript
-- **Frameworks/Libraries:** React, React Testing Library, JEST, Bootstrap
+- **Frameworks/Libraries:** React, React Testing Library, JEST, Tailwind CSS, Bootstrap
 - **Tools:** Git, GitHub, VSCode, Vite, Node.js, Slack, Asana Board, Discord
 - **Other Skills:** API Integration, Testing (RTL and JEST)
 
