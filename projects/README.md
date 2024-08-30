@@ -23,5 +23,5 @@ Here I showcase the projects I completed during my coding journey. I have listed
 - [IP Address Tracker](https://github.com/ArinzeGit/IP-Address-Tracker) `HTML, CSS, CSS Modules, TypeScript, React, Node.js, Vite, APIs` **completed May, 2024**
 - [Conquering Responsive Layouts Final Challenge Solution](https://github.com/ArinzeGit/Conquering-Responsive-Layouts-Final-Challenge-Solution) `HTML, CSS, JavaScript` **completed June, 2024**
 - [Drone Racing Landing Page](https://github.com/ArinzeGit/Drone-Racing-Landing-Page) `HTML, CSS, CSS Modules, TypeScript, React, Node.js, Vite` **completed June, 2024**
-- [RTL-Jest Test App](https://github.com/ArinzeGit/RTL-Jest-Test-App) `HTML, JavaScript, React, React Testing Library (RTL), Jest, Node.js, Create React App` **completed June, 2024**
+- [RTL-Jest Test App](https://github.com/ArinzeGit/RTL-Jest-Test-App) `HTML, JavaScript, React, React Testing Library (RTL), Jest, Node.js, Create React App` **completed July, 2024**
 - [Multi-step Form](https://github.com/ArinzeGit/Multi-step-Form) `HTML, CSS, Tailwind CSS, TypeScript, React, Node.js, Vite` **completed August, 2024**
