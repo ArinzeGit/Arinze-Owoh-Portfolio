@@ -23,18 +23,17 @@ My name is **Arinzechukwu Dennings Owoh**. I am a Nigerian Front-End Web Develop
 
 ## My Coding Journey
 
-- I started learning to code on **25th September 2023**, after my final exams for Bachelor's Degree in Electrical/Electronics Engineering in September, 2023. I had no background in computer programming so I am self-taught. I learned `HTML` and `CSS` using [edX](https://www.edx.org/) online courses.
-- In **November 2023**, I started learning `JavaScript` also on edX. I built mini projects along the way to apply what I learned.
-- On **31st December 2023**, I started learning `Git` and joined `GitHub`.
-- In **February 2024**, I decided to brush up on `fundamentals` with Havard's [CS50 Introduction to Computer Science](https://www.edx.org/learn/computer-science/harvard-university-cs50-s-introduction-to-computer-science) course on edX while building a [vanilla JavaScript game](https://github.com/ArinzeGit/Bouncing-Battle-Game) (inspired by table tennis!), to mark the end of vanilla JavaScripting.
-- In **March 2024**, I finished building the game, finished Havard's CS50 course and finally started learning the long awaited `React-JS` framework.
-- In **April 2024**, I started learning `React-TypeScript` and `Bootstrap` CSS framework and building dynamic apps with them. I practiced mainly using [Frontend Mentor](https://www.frontendmentor.io/) challenges.
-- In **May 2024**, responsiveness got more tricky as design layouts got more complex so I took the [Conquering Responsive Layouts](https://courses.kevinpowell.co/conquering-responsive-layouts) course by [Kevin Powell](https://www.youtube.com/@KevinPowell).
-- Thus far, I built from PDF designs files so in **June 2024**, I took the [From Figma to Code](https://www.coursera.org/learn/from-figma-to-code) course on [Coursera](https://www.coursera.org/) to learn to build from Figma design files.
-- In **July 2024**, I started learning `Unit Testing` with `Jest Framework` and `React Testing Library` on [Udemy](https://www.udemy.com/).
-- Still **July 2024**, I started learning and using `Tailwind CSS`
-- In **August 2024**, I learned and switched to Vitest from Jest because it offered better compatibility with my Vite bundler.
-- I will keep updating this journey as I learn more technologies.😃
+I began learning to code in September 2023, shortly after my Bachelor's in Electrical/Electronics Engineering. With no prior background in programming, I embarked on a self-taught path through various online courses.
+- `HTML` & `CSS`: Started with [edX](https://www.edx.org/) courses to learn the basics.
+- `JavaScript`: In November 2023, I took `JavaScript` courses on edX and built mini projects to apply my knowledge.
+- `Git` and `GitHub`: Learned `Git` and joined `GitHub` in December 2023.
+- `CS Fundamentals` and `Game Development`: In February 2024, I completed Harvard's [CS50](https://www.edx.org/learn/computer-science/harvard-university-cs50-s-introduction-to-computer-science) course while building a [vanilla JavaScript game](https://github.com/ArinzeGit/Bouncing-Battle-Game).
+- `React` and `TypeScript`: Began learning `React` and `TypeScript` in March 2024, followed by `Bootstrap` and `Tailwind CSS`. Practiced through [Frontend Mentor](https://www.frontendmentor.io/) challenges.
+- `Responsive Design`: Took [Kevin Powell](https://www.youtube.com/@KevinPowell)'s "[Conquering Responsive Layouts](https://courses.kevinpowell.co/conquering-responsive-layouts)" course in May, 2024 to tackle complex layouts.
+- `Design-to-Code`: Completed "[From Figma to Code](https://www.coursera.org/learn/from-figma-to-code)" on [Coursera](https://www.coursera.org/) in June, 2024 to build from `Figma` design files.
+- `Unit Testing`: Learned `Jest` and `React Testing Library` on [Udemy](https://www.udemy.com/) in July, 2024, later transitioning to `Vitest` for better `Vite` bundler compatibility.
+
+I am excited to continue this journey and will keep updating my progress as I explore new technologies😃
 
 ## Technical Skills
 
