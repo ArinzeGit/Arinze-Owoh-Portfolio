@@ -42,9 +42,9 @@ My journey is one of continuous growth and exploration, and I am excited to keep
 - **Tools:** Node.js, Vite, VSCode, Figma, Git, GitHub, Slack
 - **Other Skills:** API Integration, Software Testing (RTL, Jest and Vitest)
 
-## My Past Projects
+## My Completed Projects
 
-Here are my past [PROJECTS](projects)
+Here are my completed [PROJECTS](projects)
 
 ## My Hobbies
 
