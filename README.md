@@ -2,7 +2,7 @@
 
 ## About Me
 
-My name is **Arinzechukwu Dennings Owoh**. I am a Nigerian Front-End Web Developer living in Abuja, Nigeria.
+My name is **Arinzechukwu Dennings Owoh**. I am a Nigerian Front-End Developer living in Abuja, Nigeria.
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original-wordmark.svg" alt="HTML Logo" width='40' height='40' /><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original-wordmark.svg" alt="CSS Logo" width='40' height='40' />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap Logo" width='40' height='40'/>
