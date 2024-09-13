@@ -31,7 +31,7 @@ With a solid foundation in `JavaScript`, I advanced to learning `React`, `React-
 
 To bridge the gap between design and development, I completed the [From Figma to Code](https://www.coursera.org/learn/from-figma-to-code) course on [Coursera](https://www.coursera.org/). This course taught me to effectively translate `Figma` design files into pixel-perfect websites, enhancing my ability to build visually accurate and responsive web pages.
 
-Understanding the importance of `quality assurance`, I delved into `unit testing` with `Jest` and `React Testing Library`. Later, I replaced `Jest` with `Vitest` for better compatibility with my `Vite` build tool. Additionally, I adopted `Tailwind CSS` to streamline my styling workflow.
+Understanding the importance of `quality assurance`, I delved into `unit testing` and `integration testing` with `Jest` and `React Testing Library`. Later, I replaced `Jest` with `Vitest` for better compatibility with my `Vite` build tool. Additionally, I adopted `Tailwind CSS` to streamline my styling workflow.
 
 My journey is one of continuous growth and exploration, and I am excited to keep learning and building innovative web applications. 😃
 
