@@ -33,6 +33,8 @@ To bridge the gap between design and development, I completed the [From Figma to
 
 Understanding the importance of `quality assurance`, I delved into `unit testing` and `integration testing` with `Jest` and `React Testing Library`. Later, I replaced `Jest` with `Vitest` for better compatibility with my `Vite` build tool. Additionally, I adopted `Tailwind CSS` to streamline my styling workflow.
 
+Recently, I began learning `Next.js`, the React framework for production-ready web applications. Its `server-side rendering` (SSR) and `static site generation` (SSG) capabilities have expanded my ability to build more efficient and `SEO-friendly` web applications, while still leveraging my existing `React` knowledge.
+
 My journey is one of continuous growth and exploration, and I am excited to keep learning and building innovative web applications. 😃
 
 ## Technical Skills
