@@ -10,16 +10,18 @@ My name is **Arinzechukwu Dennings Owoh**. I am a Nigerian Front-End Developer l
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript Logo" width='40' height='40'/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript Logo" width='40' height='40'/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React Logo" width='40' height='40'/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original-wordmark.svg" alt="Slack Logo" width='40' height='40'/>
 <img src="https://testing-library.com/img/octopus-64x64.png" alt="Testing Library Logo" width='40' height='40'/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jest/jest-plain.svg" alt="Jest Logo" width='40' height='40'/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitest/vitest-original.svg" alt="Vitest Logo" width='40' height='40'/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg" alt="NodeJS Logo" width='40' height='40'/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" alt="Vite Logo" width='40' height='40'/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg" alt="NodeJS Logo" width='40' height='40'/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VSCode Logo" width='40' height='40'/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma Logo" width='40' height='40'/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git Logo" width='40' height='40'/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub Logo" width='40' height='40'/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/slack/slack-original.svg" alt="Slack Logo" width='40' height='40'/>
+
 
 ## My Coding Journey
 
@@ -41,7 +43,7 @@ My journey is one of continuous growth and exploration, and I am excited to keep
 
 - **Languages:** HTML, CSS, JavaScript, TypeScript
 - **Frameworks/Libraries:** Bootstrap, Tailwind CSS, React, Next.js, React Testing Library, Jest, Vitest
-- **Tools:** Node.js, Vite, VSCode, Figma, Git, GitHub, Slack
+- **Tools:** Node.js Package Manager, Vite, VSCode, Figma, Git, GitHub, Slack
 - **Other Skills:** API Integration, Software Testing (RTL, Jest and Vitest)
 
 ## My Completed Projects
