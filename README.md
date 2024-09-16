@@ -65,7 +65,7 @@ These are the challenges I faced in my coding journey and how I overcame them. F
 - Self-doubt
   - I would remind myself of my past achievements in endeavours that demanded logical reasoning like National Speedcubing Competitions, National Maths Olympiads, Aptitude competitions in High School and College and SAT Maths. These self-validation enable me to keep pushing.
 - Difficulty staying motivated
-  - I would listen to motivational speakers like Bob Proctor and Gary Vaynerchuk or call my brother who is a web developer and mentor.
+  - I would listen to motivational speakers like Bob Proctor, Dan Koe and Gary Vaynerchuk or call my brother who is a web developer and mentor.
 - Physical stress due to long working hours
   - I invested in an ergonomic chair and laptop stand to raise my line of sight, reduce neck strain and improve posture.
   - I invested in a monitor, external keyboard and external mouse to improve workflow.
