@@ -15,7 +15,7 @@ Here I showcase the projects I completed during my coding journey. I have listed
 - [Remote Database Project](https://github.com/ArinzeGit/Remote-Database-Project) `HTML, CSS, JavaScript` **completed December, 2023**
 - [Contacts Database Project](https://github.com/ArinzeGit/Contacts-Database-Project) `HTML, CSS, JavaScript` **completed December, 2023**
 - [Bouncing Battle Game](https://github.com/ArinzeGit/Bouncing-Battle-Game) `HTML, CSS, JavaScript` **completed March, 2024**
-- [First React App](https://github.com/ArinzeGit/First-React-App) `HTML, CSS, Bootstrap, TypeScript, React, Node.js, Vite` **completed April, 2024**
+- [My First React App](https://github.com/ArinzeGit/My-First-React-App) `HTML, CSS, Bootstrap, TypeScript, React, Node.js, Vite` **completed April, 2024**
 - [QR Code Component With React-TS](https://github.com/ArinzeGit/QR-Code-Component-With-React-TS) `HTML, CSS, Bootstrap, TypeScript, React, Node.js, Vite` **completed April, 2024**
 - [Intro Component With Sign Up Form](https://github.com/ArinzeGit/Intro-Component-With-Sign-Up-Form) `HTML, CSS, Bootstrap, TypeScript, React, Node.js, Vite` **completed April, 2024**
 - [Fylo Dark Theme Landing Page](https://github.com/ArinzeGit/Fylo-Dark-Theme-Landing-Page) `HTML, CSS, Bootstrap, TypeScript, React, Node.js, Vite` **completed April, 2024**
